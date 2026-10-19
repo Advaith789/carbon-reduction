@@ -1,0 +1,144 @@
+/**
+ * Agent 2 — the purchase intercept.
+ *
+ * Agents 1 and 3 report and plan. This agent is the only one that changes an outcome: it sits
+ * on an incoming {@link PurchaseRequest} *before* it becomes a {@link SpendTransaction} and
+ * proposes a ranked ladder of cheaper, lower-carbon ways to meet the same need.
+ *
+ * **The intervention ladder**, in the order the agent prefers it:
+ *
+ * 1. **Reuse** — an {@link InventoryItem} somewhere on campus already holds spare units of
+ *    this product. Candidates are ranked on a proximity ladder, because a match nobody will
+ *    walk to is not a match: `same_building` (zero logistics) → `same_department` (the
+ *    requester's own stock in a satellite space) → `nearby` (a different building within 400 m,
+ *    computed as a great-circle distance from {@link Building#latitude} /
+ *    {@link Building#longitude} — roughly a short walk across the same quadrant of campus) →
+ *    `campus` (anywhere else). Every candidate reports its distance in metres, so the 400 m
+ *    cut-off is visible rather than implied.
+ * 2. **Substitute** — an existing {@link Contract} offers a lower-carbon line for the same
+ *    need, e.g. a certified-refurbished laptop at half the price of new. A substitute is only
+ *    proposed when there is *evidence* it is lower-carbon: a circular-economy signal in the
+ *    contract line (refurbished / remanufactured / certified pre-owned) or a
+ *    {@link ProductFootprint} showing strictly lower embodied carbon.
+ * 3. **Consolidate** — other `Pending` requests for the same {@link ProductCategory} are
+ *    heading to the same {@link Building}. One order and one delivery instead of several.
+ * 4. **Defer** — the request lands in May or June, the UW fiscal-year-end "use it or lose it"
+ *    window, where a measurable share of spend buys stock that is never used.
+ *
+ * **The intercept suggests, never blocks.** Every method here is advisory;
+ * {@link InterceptAgent#decide} records what a human chose and *why*, and a decline is kept
+ * as signal — "the match existed and was refused" is exactly the barrier-to-reuse evidence
+ * the planner needs when it decides how much reduction to assume from behaviour change.
+ *
+ * **Carbon method, always labelled.** Where a {@link ProductFootprint} matches the product,
+ * avoided carbon is computed per unit from the real product footprint and reuse is credited
+ * with the manufacturing share ({@link ProductFootprint#pctManufacturing}) — the part of the
+ * lifecycle that reusing an existing unit genuinely avoids. Otherwise the agent falls back to
+ * the spend-based method (`amount * kgCo2ePerDollar / 1000`). Every estimate carries a
+ * `method` of `product_footprint`, `spend_based`, `estimated_logistics` or
+ * `year_end_excess_share` plus the `basis` it was derived from, so no number in the UI is
+ * unattributable.
+ *
+ * **Units contract:** tonnes CO2e as doubles rounded to 3 decimals (single requests are small
+ * — rounding to 1 decimal would erase them), US dollars rounded to whole units, distances in
+ * whole metres, and percentages as 0–100 doubles.
+ */
+type InterceptAgent {
+
+  /**
+   * The intercept work queue: every {@link PurchaseRequest} in a given state, each already
+   * scored with its estimated carbon and its single best intervention.
+   *
+   * This is the landing page of the intercept — a buyer or sustainability officer sees the
+   * pending requests ranked by how much carbon is avoidable, not by when they arrived. Rows
+   * with no opportunity are still returned, flagged `topAction: "proceed"`: being able to say
+   * *"nothing to do here, just buy it"* is what makes the other recommendations credible.
+   *
+   * @param status
+   *        {@link PurchaseRequest#status} to list — typically `"Pending"`. Pass `"all"` (or
+   *        null) for every request regardless of state.
+   * @param limit
+   *        Maximum rows to return, highest avoidable carbon first. Defaults to 50.
+   */
+  queue: function(status: string, limit: int): json js
+
+  /**
+   * Full evaluation of one {@link PurchaseRequest} — the detail view behind a queue row.
+   *
+   * Returns the request, its estimated embodied carbon, and every rung of the ladder that
+   * applies, each as a self-contained option carrying its avoided tonnes and dollars, the
+   * units it covers, the method and basis used, the named counterparty (which department
+   * holds the surplus stock, which contract to buy from, which other request to merge with)
+   * and a ready-to-send sentence.
+   *
+   * It also returns a stacked `recommendation`: the ladder rungs are not mutually exclusive,
+   * so when surplus stock covers only part of a request the remainder is passed to the
+   * substitution rung, and the residual carbon of whatever is still ordered is reported
+   * honestly.
+   *
+   * When the reuse rung finds nothing, `reuseGap` says why in one sentence derived from the
+   * {@link InventoryItem} rows that were actually searched — nothing declared surplus in the
+   * category, everything declared already committed, or a near-miss on the product name with
+   * the closest holder named. Those are three different problems for three different people,
+   * and "no suggestions" would hide all of them.
+   *
+   * @param requestId
+   *        {@link PurchaseRequest#id} to evaluate.
+   */
+  evaluate: function(requestId: string): json js
+
+  /**
+   * Record a human decision on a request and move it to the matching
+   * {@link PurchaseRequest#status}.
+   *
+   * `action` is one of `reuse` → `Reused`, `substitute` → `Substituted`, `consolidate` →
+   * `Consolidated`, `approve` → `Approved` (proceed with the original order), `decline` →
+   * `Declined` (the request is withdrawn), or `reset` → `Pending`. The `reason` is appended to
+   * {@link PurchaseRequest#justification} and is the point of the method: an accepted
+   * suggestion tells you the ladder works, and a refused one tells you which barrier —
+   * timing, condition, compliance, trust — to fix next.
+   *
+   * `reset` is the only action that moves a request backwards, and it is here because all the
+   * others are real writes to a persisted record: without it a mis-click is permanent and a
+   * queue worked end to end can never be worked again. It credits nothing, and it **appends**
+   * its own stamp rather than erasing the decision it withdraws — that a choice was made and
+   * then taken back is the more interesting half of the audit trail.
+   *
+   * Returns the decision alongside the avoided tonnes and dollars actually realised, taken
+   * from a fresh {@link InterceptAgent#evaluate} rather than from caller-supplied numbers.
+   *
+   * @param requestId
+   *        {@link PurchaseRequest#id} being decided.
+   * @param action
+   *        One of `reuse`, `substitute`, `consolidate`, `approve`, `decline`, `reset`.
+   * @param reason
+   *        Why the decision was made. Required in spirit — pass something, it is the data.
+   */
+  decide: function(requestId: string, action: string, reason: string): json js
+
+  /**
+   * Portfolio view of the intercept: what it has found, what has been decided, and what it is
+   * worth against the goal.
+   *
+   * Aggregates every request into totals (count, value, embodied carbon), the opportunity mix
+   * (how many requests have a reuse match and on which proximity rung, how many a substitute,
+   * a consolidation or a deferral), the avoided tonnes and dollars if every top recommendation
+   * were accepted, and the decisions recorded so far including the declined reasons.
+   *
+   * `realised` separates the offer from the achievement: `avoidableTonnes` is what the whole
+   * queue is worth if every top recommendation were taken, while `realised.tonnes` counts only
+   * the requests whose {@link PurchaseRequest#status} shows a suggestion was accepted. It is
+   * re-derived from the current ladder rather than stored, so it is computed the same way
+   * {@link InterceptAgent#decide} credited it — and it survives a page reload, which a total
+   * accumulated in a browser session does not.
+   *
+   * Crucially it closes the loop to Agent 3: the avoided tonnes are also expressed as a share
+   * of the fiscal year's total purchase carbon and of the gap to the 2030
+   * {@link SustainabilityGoal}, which is how a stack of individual purchase decisions becomes
+   * a visible contribution to a campus target.
+   *
+   * @param fiscalYear
+   *        Fiscal year to measure the campus baseline and goal gap against. Defaults to 2024.
+   */
+  interceptStats: function(fiscalYear: int): json js
+}

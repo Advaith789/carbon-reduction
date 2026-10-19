@@ -1,0 +1,42 @@
+/**
+ * A UW-Madison department — the unit that makes purchases and is held to a carbon budget.
+ *
+ * Department attribution is synthetic in the demo (public spend data is not broken out below
+ * the agency level), so each {@link Transaction} is assigned to a plausible department whose
+ * totals still roll up to the real vendor-level spend.
+ */
+entity type Department schema name "DEPARTMENT" {
+
+  /**
+   * Unique identifier for the department, e.g. `"chemistry"`.
+   */
+  id: !string
+
+  /**
+   * Department name (e.g. `"Department of Chemistry"`).
+   */
+  name: !string
+
+  /**
+   * The school or college this department belongs to (e.g. `"College of Letters & Science"`).
+   */
+  college: string
+
+  /**
+   * The {@link Building} this department is primarily housed in. Inverse of
+   * {@link Building#departments}.
+   */
+  building: Building
+
+  /**
+   * The {@link SpendTransaction} records attributed to this department. Inverse of
+   * {@link SpendTransaction#department}.
+   */
+  transactions: [SpendTransaction](department)
+
+  /**
+   * The {@link CarbonBudget} records for this department across fiscal years. Inverse of
+   * {@link CarbonBudget#department}.
+   */
+  carbonBudgets: [CarbonBudget](department)
+}

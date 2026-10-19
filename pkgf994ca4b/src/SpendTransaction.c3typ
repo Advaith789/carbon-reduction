@@ -1,0 +1,54 @@
+/**
+ * One purchase/spend record — the atomic unit Badger Footprint measures carbon on.
+ *
+ * Named `SpendTransaction` to avoid colliding with the platform's built-in `Transaction` type.
+ * Embodied emissions for a record are
+ * `amount * vendor.productCategory.emissionFactor.kgCo2ePerDollar / 1000` tonnes CO2e. Dollar
+ * amounts and vendors are real (from public spend data); department attribution is synthetic
+ * but calibrated so per-vendor totals match the real source.
+ */
+entity type SpendTransaction schema name "SPEND_TRANSACTION" {
+
+  /**
+   * Unique identifier for the transaction.
+   */
+  id: !string
+
+  /**
+   * The {@link Vendor} the purchase was made from. Inverse of {@link Vendor#transactions}.
+   */
+  vendor: !Vendor
+
+  /**
+   * The {@link Department} attributed with the purchase. Inverse of
+   * {@link Department#transactions}.
+   */
+  department: Department
+
+  /**
+   * The {@link ProductCategory} assigned to this purchase (normally inherited from the
+   * vendor's category). Inverse of {@link ProductCategory#transactions}.
+   */
+  productCategory: ProductCategory
+
+  /**
+   * Amount spent, in USD. Drives the carbon estimate:
+   * `tonnes CO2e = amount * kgCo2ePerDollar / 1000`.
+   */
+  amount: !double
+
+  /**
+   * Fiscal year the spend is booked to (e.g. `2024`).
+   */
+  fiscalYear: !int
+
+  /**
+   * Date the transaction occurred, when known.
+   */
+  transactionDate: datetime
+
+  /**
+   * Free-text description of the purchase, when available from the source record.
+   */
+  description: string
+}

@@ -1,0 +1,58 @@
+/**
+ * An EPA Supply Chain GHG Emission Factor for a single NAICS-6 commodity.
+ *
+ * Loaded verbatim from the EPA Supply Chain GHG Emission Factors v1.3 dataset
+ * (`SupplyChainGHGEmissionFactors_v1.3.0_NAICS_CO2e_USD2022.csv`). These factors are the
+ * real, published half of Badger Footprint's carbon math: for a purchase of `amount` USD
+ * classified into this commodity, the embodied emissions are
+ * `amount * {@link EmissionFactor#kgCo2ePerDollar} / 1000` tonnes CO2e.
+ */
+entity type EmissionFactor schema name "EMISSION_FACTOR" {
+
+  /**
+   * The 2017 NAICS-6 code, reused verbatim as the identifier (e.g. `"334111"`).
+   */
+  id: string
+
+  /**
+   * The 2017 NAICS-6 code for this commodity, from the EPA CSV `2017 NAICS Code` column.
+   * Equal to {@link EmissionFactor#id}; kept as its own field for explicit joins.
+   */
+  naicsCode: !string
+
+  /**
+   * Human-readable commodity title, from the EPA CSV `2017 NAICS Title` column
+   * (e.g. `"Electronic Computer Manufacturing"`).
+   */
+  naicsTitle: !string
+
+  /**
+   * Emission factor in kg CO2e per 2022 purchaser-price USD, taken from the EPA CSV
+   * `Supply Chain Emission Factors with Margins` column. The with-margins value is the
+   * correct one for spend-based estimates because purchase amounts are retail prices that
+   * include transport and wholesale/retail margins.
+   */
+  kgCo2ePerDollar: !double
+
+  /**
+   * Greenhouse-gas scope of the factor; constant `"All GHGs"` in the main CSV.
+   */
+  ghg: string
+
+  /**
+   * Unit string from the EPA CSV; constant `"kg CO2e/2022 USD, purchaser price"`.
+   */
+  unit: string
+
+  /**
+   * The USEEIO reference code from the EPA CSV `Reference USEEIO Code` column, retained for
+   * provenance and traceability back to the source model.
+   */
+  useeioCode: string
+
+  /**
+   * The {@link ProductCategory} records that classify spend into this commodity. Inverse of
+   * {@link ProductCategory#emissionFactor}.
+   */
+  productCategories: [ProductCategory](emissionFactor)
+}

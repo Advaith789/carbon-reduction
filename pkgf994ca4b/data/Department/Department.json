@@ -1,0 +1,130 @@
+[
+  {
+    "id": "chemistry",
+    "name": "Department of Chemistry",
+    "college": "College of Letters & Science",
+    "building": {
+      "id": "chemistry_building"
+    }
+  },
+  {
+    "id": "biochemistry",
+    "name": "Department of Biochemistry",
+    "college": "College of Agricultural & Life Sciences",
+    "building": {
+      "id": "biochemistry"
+    }
+  },
+  {
+    "id": "genetics",
+    "name": "Laboratory of Genetics",
+    "college": "College of Agricultural & Life Sciences",
+    "building": {
+      "id": "biochemistry"
+    }
+  },
+  {
+    "id": "bacteriology",
+    "name": "Department of Bacteriology",
+    "college": "College of Agricultural & Life Sciences",
+    "building": {
+      "id": "microbial_sciences"
+    }
+  },
+  {
+    "id": "food_science",
+    "name": "Department of Food Science",
+    "college": "College of Agricultural & Life Sciences",
+    "building": {
+      "id": "microbial_sciences"
+    }
+  },
+  {
+    "id": "mechanical_engineering",
+    "name": "Dept. of Mechanical Engineering",
+    "college": "College of Engineering",
+    "building": {
+      "id": "engineering_hall"
+    }
+  },
+  {
+    "id": "electrical_engineering",
+    "name": "Dept. of Electrical & Computer Engineering",
+    "college": "College of Engineering",
+    "building": {
+      "id": "engineering_hall"
+    }
+  },
+  {
+    "id": "chem_bio_engineering",
+    "name": "Dept. of Chemical & Biological Engineering",
+    "college": "College of Engineering",
+    "building": {
+      "id": "engineering_hall"
+    }
+  },
+  {
+    "id": "computer_sciences",
+    "name": "Department of Computer Sciences",
+    "college": "School of Computer, Data & Information Sciences",
+    "building": {
+      "id": "computer_sciences"
+    }
+  },
+  {
+    "id": "physics",
+    "name": "Department of Physics",
+    "college": "College of Letters & Science",
+    "building": {
+      "id": "chamberlin_hall"
+    }
+  },
+  {
+    "id": "astronomy",
+    "name": "Department of Astronomy",
+    "college": "College of Letters & Science",
+    "building": {
+      "id": "chamberlin_hall"
+    }
+  },
+  {
+    "id": "mathematics",
+    "name": "Department of Mathematics",
+    "college": "College of Letters & Science",
+    "building": {
+      "id": "van_vleck"
+    }
+  },
+  {
+    "id": "school_of_medicine",
+    "name": "School of Medicine & Public Health",
+    "college": "SMPH",
+    "building": {
+      "id": "medical_sciences"
+    }
+  },
+  {
+    "id": "med_microbiology",
+    "name": "Dept. of Medical Microbiology & Immunology",
+    "college": "SMPH",
+    "building": {
+      "id": "medical_sciences"
+    }
+  },
+  {
+    "id": "business",
+    "name": "Wisconsin School of Business",
+    "college": "Wisconsin School of Business",
+    "building": {
+      "id": "grainger_hall"
+    }
+  },
+  {
+    "id": "biomedical_engineering",
+    "name": "Dept. of Biomedical Engineering",
+    "college": "College of Engineering",
+    "building": {
+      "id": "wid"
+    }
+  }
+]

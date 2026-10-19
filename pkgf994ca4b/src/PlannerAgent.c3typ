@@ -1,0 +1,90 @@
+/**
+ * Agent 3 — the what-if reduction planner.
+ *
+ * The planner answers the question a department chair actually asks: *"we can only cut lab
+ * chemicals by 5% — what does that force everyone else to do?"* The user **pins** one or more
+ * {@link ProductCategory} cuts and the solver redistributes the remaining need across the
+ * unpinned categories, respecting each one's feasibility ceiling.
+ *
+ * **The solver is deterministic and lives entirely in {@link PlannerAgent#solve}.** An LLM
+ * may translate a sentence into a pin set and narrate the result, but it must never compute
+ * an allocation — the numbers come from arithmetic over {@link ReductionLever} ceilings and
+ * {@link SpendTransaction} baselines, so they are reproducible and auditable.
+ *
+ * Feasibility is a first-class answer. A category cannot be cut past the sum of its levers'
+ * {@link ReductionLever#maxReductionPct} on the plan's horizon, so an aggressive set of pins
+ * can make a goal arithmetically unreachable. When that happens the planner reports
+ * **infeasible** with the exact shortfall and what would have to change, rather than quietly
+ * fudging the numbers — which is the honest behaviour and, in a demo, the more interesting one.
+ *
+ * **Units contract:** tonnes CO2e as doubles rounded to 1 decimal, dollars rounded to whole
+ * units, and **percentages as 0–100 doubles on the way in and out**, even though
+ * {@link ReductionLever#maxReductionPct} and {@link SustainabilityGoal#reductionPct} are
+ * stored as 0–1 fractions. Callers never deal in fractions.
+ */
+type PlannerAgent {
+
+  /**
+   * The starting position for a plan: per-category baseline emissions, the feasibility
+   * ceiling available on each horizon, and the levers behind each ceiling.
+   *
+   * This is what the planner UI loads to draw its sliders — each category's slider runs from
+   * 0 to its `ceilingPct`, and the ceiling is drawn on the track so the user can see the
+   * constraint before they hit it.
+   *
+   * @param fiscalYear
+   *        Baseline fiscal year to measure against. Defaults to 2024 when null.
+   */
+  baseline: function(fiscalYear: int): json js
+
+  /**
+   * Solve for a reduction allocation that hits a target year's goal, honouring the caller's
+   * pinned categories.
+   *
+   * Accepts a spec object:
+   * - `targetYear` (int, required) — the {@link SustainabilityGoal} to aim at, e.g. `2030`.
+   *   Also selects which levers are in play: only those with
+   *   {@link ReductionLever#horizonYear} at or below this year.
+   * - `pins` (map of category id to percent 0–100) — categories held at a fixed cut. A pin
+   *   above the category's ceiling is clamped to the ceiling and flagged in the response.
+   * - `strategy` (string) — how to spread the remaining need across unpinned categories:
+   *   `"equal_pct"` (default; every category takes a similar percentage cut, water-filled so
+   *   nobody exceeds their ceiling), `"cheapest_first"` (a true marginal abatement cost curve
+   *   — levers are taken in ascending {@link ReductionLever#costPerTonne} order, so
+   *   money-saving actions are exhausted first), or `"effort_balanced"` (weights allocation
+   *   toward `Low`-effort levers so the plan is politically achievable).
+   * - `targetPct` (double 0–100, optional) — solve against this depth of cut instead of the
+   *   published {@link SustainabilityGoal#reductionPct}. This is what lets a caller ask "what
+   *   if we aimed for 37%?" without inventing a goal record, and is how the planner UI's
+   *   target slider is served. Clamped to [0,100]; a non-numeric value is ignored with a note.
+   *   The response's `goal` block always reports `publishedReductionPct` and a
+   *   `targetOverridden` flag alongside the figure actually solved against, so an exploratory
+   *   run can never be mistaken for the university's real commitment.
+   * - `fiscalYear` (int) — baseline year. Defaults to 2024.
+   *
+   * Returns the allocation per category **decomposed into the specific levers that compose
+   * it** — with an owner for each — plus totals, cost, and either a feasible verdict or an
+   * explicit shortfall with suggested remedies.
+   *
+   * @param spec
+   *        The plan request described above.
+   */
+  solve: function(spec: json): json js
+
+  /**
+   * Persist a solved plan as a {@link ReductionPlan} so it can be shared, compared or
+   * revisited.
+   *
+   * Re-solves from the spec before saving rather than trusting numbers supplied by the
+   * caller, so a stored plan can never disagree with the solver.
+   *
+   * Accepts the same spec as {@link PlannerAgent#solve}, plus:
+   * - `name` (string) — display name for the plan; one is generated when omitted.
+   * - `createdBy` (string) — who to attribute the plan to.
+   * - `notes` (string) — free-text rationale.
+   *
+   * @param spec
+   *        The plan request plus save metadata.
+   */
+  savePlan: function(spec: json): json js
+}

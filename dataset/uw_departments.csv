@@ -1,0 +1,11 @@
+id,name,building,latitude,longitude,staff_fte,annual_it_budget_usd,annual_lab_budget_usd,research_exp_musd
+chem,Department of Chemistry,Daniels Chemistry Building,43.0738,-89.3996,520,240000,1800000,48
+engr,College of Engineering,Engineering Hall,43.0717,-89.4115,1400,620000,900000,120
+cs,Computer Sciences,Computer Sciences Building,43.0712,-89.4073,900,780000,120000,60
+biochem,Department of Biochemistry,Biochemistry Building,43.0729,-89.4150,480,180000,2400000,55
+wid,Wisconsin Institutes for Discovery,WID,43.0716,-89.4075,400,300000,1100000,40
+bus,Wisconsin School of Business,Grainger Hall,43.0726,-89.4012,700,420000,40000,12
+smph,School of Medicine & Public Health,WIMR,43.0760,-89.4300,2200,1100000,3600000,320
+phys,Department of Physics,Chamberlin Hall,43.0740,-89.4019,420,210000,1300000,42
+nelson,Nelson Institute,Science Hall,43.0748,-89.4004,260,110000,180000,15
+swap,Surplus With A Purpose (SWAP),SWAP Warehouse,43.0690,-89.4080,25,20000,0,0

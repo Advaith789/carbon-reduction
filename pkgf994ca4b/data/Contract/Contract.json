@@ -1,0 +1,139 @@
+[
+  {
+    "id": "ct_dell_laptops",
+    "vendor": {
+      "id": "dell"
+    },
+    "productName": "Dell Latitude business laptop (new)",
+    "unitPrice": 1200,
+    "description": "UW standard laptop contract."
+  },
+  {
+    "id": "ct_dell_refurb",
+    "vendor": {
+      "id": "dell"
+    },
+    "productName": "Dell Latitude certified refurbished",
+    "unitPrice": 600,
+    "description": "Certified refurbished; ~50% of new price, avoids most manufacturing emissions."
+  },
+  {
+    "id": "ct_cdw_desktops",
+    "vendor": {
+      "id": "cdw"
+    },
+    "productName": "CDW desktop & peripheral catalog",
+    "unitPrice": 950,
+    "description": "IT hardware punchout catalog."
+  },
+  {
+    "id": "ct_cdw_monitor",
+    "vendor": {
+      "id": "cdw"
+    },
+    "productName": "Dell 24in monitor",
+    "unitPrice": 230,
+    "description": "Standard campus monitor."
+  },
+  {
+    "id": "ct_apple_macbook",
+    "vendor": {
+      "id": "apple"
+    },
+    "productName": "Apple MacBook Pro education",
+    "unitPrice": 1800,
+    "description": "Apple education pricing."
+  },
+  {
+    "id": "ct_fisher_chem",
+    "vendor": {
+      "id": "fisher_scientific"
+    },
+    "productName": "Fisher lab chemicals catalog",
+    "description": "Preferred-pricing lab supply contract."
+  },
+  {
+    "id": "ct_fisher_tips",
+    "vendor": {
+      "id": "fisher_scientific"
+    },
+    "productName": "Pipette tips, 1000uL (case)",
+    "unitPrice": 310,
+    "description": "Lab consumable, case of 10 racks."
+  },
+  {
+    "id": "ct_vwr_consumables",
+    "vendor": {
+      "id": "vwr"
+    },
+    "productName": "VWR consumables punchout",
+    "description": "Lab consumables punchout catalog."
+  },
+  {
+    "id": "ct_vwr_gloves",
+    "vendor": {
+      "id": "vwr"
+    },
+    "productName": "Nitrile exam gloves (case)",
+    "unitPrice": 95,
+    "description": "Lab PPE, case of 10 boxes."
+  },
+  {
+    "id": "ct_airgas_gases",
+    "vendor": {
+      "id": "airgas"
+    },
+    "productName": "Airgas cylinder & cryogenic supply",
+    "description": "Campus industrial/lab gas supply."
+  },
+  {
+    "id": "ct_grainger_mro",
+    "vendor": {
+      "id": "grainger"
+    },
+    "productName": "Grainger MRO catalog",
+    "description": "Maintenance, repair & operations."
+  },
+  {
+    "id": "ct_staples_office",
+    "vendor": {
+      "id": "staples"
+    },
+    "productName": "Staples office supplies",
+    "description": "Office supplies contract."
+  },
+  {
+    "id": "ct_steelcase_furn",
+    "vendor": {
+      "id": "steelcase"
+    },
+    "productName": "Steelcase office furniture (new)",
+    "unitPrice": 890,
+    "description": "Office furniture contract."
+  },
+  {
+    "id": "ct_steelcase_refurb",
+    "vendor": {
+      "id": "steelcase"
+    },
+    "productName": "Steelcase refurbished task chair",
+    "unitPrice": 310,
+    "description": "Refurbished furniture line."
+  },
+  {
+    "id": "ct_microsoft_ea",
+    "vendor": {
+      "id": "microsoft"
+    },
+    "productName": "Microsoft campus agreement",
+    "description": "Campus license agreement."
+  },
+  {
+    "id": "ct_fedex_ship",
+    "vendor": {
+      "id": "fedex"
+    },
+    "productName": "FedEx shipping services",
+    "description": "Outbound shipping & courier."
+  }
+]

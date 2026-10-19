@@ -1,0 +1,382 @@
+[
+  {
+    "id": "inv_ece_monitors",
+    "productName": "Dell 24in monitor",
+    "productCategory": {
+      "id": "it_hardware"
+    },
+    "department": {
+      "id": "electrical_engineering"
+    },
+    "building": {
+      "id": "engineering_hall"
+    },
+    "quantityOnHand": 14,
+    "quantityExcess": 6,
+    "unitPrice": 230,
+    "unitLabel": "each",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Left over from the teaching-lab refresh. Boxed, unused."
+  },
+  {
+    "id": "inv_biochem_tips",
+    "productName": "Pipette tips, 1000uL (case)",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "department": {
+      "id": "biochemistry"
+    },
+    "building": {
+      "id": "biochemistry"
+    },
+    "quantityOnHand": 62,
+    "quantityExcess": 40,
+    "unitPrice": 310,
+    "unitLabel": "case",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Over-ordered at fiscal year end. Unopened, in dry storage."
+  },
+  {
+    "id": "inv_foodsci_gloves",
+    "productName": "Nitrile exam gloves (case)",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "department": {
+      "id": "food_science"
+    },
+    "building": {
+      "id": "microbial_sciences"
+    },
+    "quantityOnHand": 28,
+    "quantityExcess": 18,
+    "unitPrice": 95,
+    "unitLabel": "case",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Switched glove size; unopened cases available."
+  },
+  {
+    "id": "inv_business_chairs",
+    "productName": "Steelcase task chair",
+    "productCategory": {
+      "id": "furniture"
+    },
+    "department": {
+      "id": "business"
+    },
+    "building": {
+      "id": "grainger_hall"
+    },
+    "quantityOnHand": 22,
+    "quantityExcess": 12,
+    "unitPrice": 310,
+    "unitLabel": "each",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Office reconfiguration surplus. Good condition, cleaned."
+  },
+  {
+    "id": "inv_genetics_tubes",
+    "productName": "Centrifuge tubes, 50mL (case)",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "department": {
+      "id": "genetics"
+    },
+    "building": {
+      "id": "biochemistry"
+    },
+    "quantityOnHand": 40,
+    "quantityExcess": 22,
+    "unitPrice": 180,
+    "unitLabel": "case",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Protocol change left surplus stock. Unopened."
+  },
+  {
+    "id": "inv_chem_solvent_bottles",
+    "productName": "Solvent bottles, 4L (case)",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "department": {
+      "id": "chemistry"
+    },
+    "building": {
+      "id": "chemistry_building"
+    },
+    "quantityOnHand": 30,
+    "quantityExcess": 8,
+    "unitPrice": 210,
+    "unitLabel": "case",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Surplus from bulk order."
+  },
+  {
+    "id": "inv_cs_laptops",
+    "productName": "Dell Latitude 3450",
+    "productCategory": {
+      "id": "it_hardware"
+    },
+    "department": {
+      "id": "computer_sciences"
+    },
+    "building": {
+      "id": "computer_sciences"
+    },
+    "quantityOnHand": 9,
+    "quantityExcess": 4,
+    "unitPrice": 1200,
+    "unitLabel": "each",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Staff turnover returns, re-imaged."
+  },
+  {
+    "id": "inv_math_paper",
+    "productName": "Copy paper (case)",
+    "productCategory": {
+      "id": "paper"
+    },
+    "department": {
+      "id": "mathematics"
+    },
+    "building": {
+      "id": "van_vleck"
+    },
+    "quantityOnHand": 45,
+    "quantityExcess": 20,
+    "unitPrice": 42,
+    "unitLabel": "case",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Reduced printing after digital-first switch."
+  },
+  {
+    "id": "inv_physics_cylinders",
+    "productName": "Argon cylinder (size 200)",
+    "productCategory": {
+      "id": "industrial_gas"
+    },
+    "department": {
+      "id": "physics"
+    },
+    "building": {
+      "id": "chamberlin_hall"
+    },
+    "quantityOnHand": 11,
+    "quantityExcess": 3,
+    "unitPrice": 165,
+    "unitLabel": "each",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Full cylinders, experiment cancelled."
+  },
+  {
+    "id": "inv_me_fasteners",
+    "productName": "Assorted fasteners (bin lot)",
+    "productCategory": {
+      "id": "industrial_mro"
+    },
+    "department": {
+      "id": "mechanical_engineering"
+    },
+    "building": {
+      "id": "engineering_hall"
+    },
+    "quantityOnHand": 120,
+    "quantityExcess": 60,
+    "unitPrice": 4,
+    "unitLabel": "each",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Shop surplus."
+  },
+  {
+    "id": "inv_smph_office",
+    "productName": "Binders & folders (box)",
+    "productCategory": {
+      "id": "office_supplies"
+    },
+    "department": {
+      "id": "school_of_medicine"
+    },
+    "building": {
+      "id": "medical_sciences"
+    },
+    "quantityOnHand": 80,
+    "quantityExcess": 35,
+    "unitPrice": 18,
+    "unitLabel": "box",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Admin move surplus."
+  },
+  {
+    "id": "inv_bact_petri",
+    "productName": "Petri dishes, sterile (case)",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "department": {
+      "id": "bacteriology"
+    },
+    "building": {
+      "id": "microbial_sciences"
+    },
+    "quantityOnHand": 36,
+    "quantityExcess": 14,
+    "unitPrice": 130,
+    "unitLabel": "case",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Unopened sleeves."
+  },
+  {
+    "id": "inv_astro_cables",
+    "productName": "Shielded cable assemblies",
+    "productCategory": {
+      "id": "industrial_mro"
+    },
+    "department": {
+      "id": "astronomy"
+    },
+    "building": {
+      "id": "chamberlin_hall"
+    },
+    "quantityOnHand": 24,
+    "quantityExcess": 10,
+    "unitPrice": 55,
+    "unitLabel": "each",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Instrument build leftovers."
+  },
+  {
+    "id": "inv_cbe_tubing",
+    "productName": "Silicone tubing (roll)",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "department": {
+      "id": "chem_bio_engineering"
+    },
+    "building": {
+      "id": "engineering_hall"
+    },
+    "quantityOnHand": 18,
+    "quantityExcess": 7,
+    "unitPrice": 88,
+    "unitLabel": "roll",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Pilot plant surplus."
+  },
+  {
+    "id": "inv_bme_pipettes",
+    "productName": "Serological pipettes (case)",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "department": {
+      "id": "biomedical_engineering"
+    },
+    "building": {
+      "id": "wid"
+    },
+    "quantityOnHand": 26,
+    "quantityExcess": 11,
+    "unitPrice": 145,
+    "unitLabel": "case",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Unopened."
+  },
+  {
+    "id": "inv_medmicro_plates",
+    "productName": "96-well plates (case)",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "department": {
+      "id": "med_microbiology"
+    },
+    "building": {
+      "id": "medical_sciences"
+    },
+    "quantityOnHand": 33,
+    "quantityExcess": 15,
+    "unitPrice": 215,
+    "unitLabel": "case",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Assay switched formats."
+  },
+  {
+    "id": "inv_cs_docks",
+    "productName": "USB-C docking station",
+    "productCategory": {
+      "id": "it_hardware"
+    },
+    "department": {
+      "id": "computer_sciences"
+    },
+    "building": {
+      "id": "computer_sciences"
+    },
+    "quantityOnHand": 17,
+    "quantityExcess": 8,
+    "unitPrice": 180,
+    "unitLabel": "each",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Hardware standard changed."
+  },
+  {
+    "id": "inv_business_monitors",
+    "productName": "Dell 24in monitor",
+    "productCategory": {
+      "id": "it_hardware"
+    },
+    "department": {
+      "id": "business"
+    },
+    "building": {
+      "id": "grainger_hall"
+    },
+    "quantityOnHand": 10,
+    "quantityExcess": 5,
+    "unitPrice": 230,
+    "unitLabel": "each",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Hoteling desks decommissioned."
+  },
+  {
+    "id": "inv_chem_gloves",
+    "productName": "Nitrile exam gloves (case)",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "department": {
+      "id": "chemistry"
+    },
+    "building": {
+      "id": "chemistry_building"
+    },
+    "quantityOnHand": 20,
+    "quantityExcess": 6,
+    "unitPrice": 95,
+    "unitLabel": "case",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Size mismatch."
+  },
+  {
+    "id": "inv_smph_chairs",
+    "productName": "Steelcase task chair",
+    "productCategory": {
+      "id": "furniture"
+    },
+    "department": {
+      "id": "school_of_medicine"
+    },
+    "building": {
+      "id": "medical_sciences"
+    },
+    "quantityOnHand": 15,
+    "quantityExcess": 7,
+    "unitPrice": 310,
+    "unitLabel": "each",
+    "lastUpdated": "2024-06-14T00:00:00Z",
+    "notes": "Clinic refresh surplus."
+  }
+]

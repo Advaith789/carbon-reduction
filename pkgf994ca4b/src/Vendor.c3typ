@@ -1,0 +1,40 @@
+/**
+ * A supplier that UW-Madison purchases from (e.g. Fisher Scientific, CDW, Grainger).
+ *
+ * Vendor names are the real, high-signal field in public spend data, so Badger Footprint
+ * classifies primarily by vendor: each vendor is assigned one {@link ProductCategory}, which
+ * in turn carries the {@link EmissionFactor} used for its transactions.
+ */
+entity type Vendor schema name "VENDOR" {
+
+  /**
+   * Unique identifier for the vendor, e.g. `"fisher_scientific"`.
+   */
+  id: !string
+
+  /**
+   * Vendor name as it appears in spend records (e.g. `"Fisher Scientific"`).
+   */
+  name: !string
+
+  /**
+   * Optional prose describing the vendor and what UW typically buys from them.
+   */
+  description: string
+
+  /**
+   * The {@link ProductCategory} this vendor is classified under. Inverse of
+   * {@link ProductCategory#vendors}.
+   */
+  productCategory: ProductCategory
+
+  /**
+   * The {@link SpendTransaction} records with this vendor. Inverse of {@link SpendTransaction#vendor}.
+   */
+  transactions: [SpendTransaction](vendor)
+
+  /**
+   * The {@link Contract} records UW holds with this vendor. Inverse of {@link Contract#vendor}.
+   */
+  contracts: [Contract](vendor)
+}

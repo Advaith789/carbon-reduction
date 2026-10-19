@@ -1,0 +1,65 @@
+[
+  {
+    "id": "pf_dell_latitude_3450",
+    "productName": "Dell Latitude 3450",
+    "manufacturer": "Dell Technologies",
+    "kgCo2e": 121.0,
+    "lifespanYears": 4.0,
+    "pctManufacturing": 0.68,
+    "source": "Dell PCF via Climatiq"
+  },
+  {
+    "id": "pf_dell_refurb",
+    "productName": "Dell Latitude (certified refurbished)",
+    "manufacturer": "Dell Technologies",
+    "kgCo2e": 39.0,
+    "lifespanYears": 4.0,
+    "pctManufacturing": 0.0,
+    "source": "Estimated: refurb avoids most manufacturing"
+  },
+  {
+    "id": "pf_apple_macbook_pro",
+    "productName": "Apple MacBook Pro 14in",
+    "manufacturer": "Apple",
+    "kgCo2e": 257.0,
+    "lifespanYears": 5.0,
+    "pctManufacturing": 0.74,
+    "source": "Apple Product Environmental Report"
+  },
+  {
+    "id": "pf_hp_elitebook",
+    "productName": "HP EliteBook 840",
+    "manufacturer": "HP",
+    "kgCo2e": 310.0,
+    "lifespanYears": 4.0,
+    "pctManufacturing": 0.7,
+    "source": "HP Product Carbon Footprint"
+  },
+  {
+    "id": "pf_dell_optiplex",
+    "productName": "Dell OptiPlex desktop",
+    "manufacturer": "Dell Technologies",
+    "kgCo2e": 322.0,
+    "lifespanYears": 5.0,
+    "pctManufacturing": 0.65,
+    "source": "Dell PCF"
+  },
+  {
+    "id": "pf_dell_monitor",
+    "productName": "Dell 24in monitor",
+    "manufacturer": "Dell Technologies",
+    "kgCo2e": 230.0,
+    "lifespanYears": 6.0,
+    "pctManufacturing": 0.72,
+    "source": "Dell PCF"
+  },
+  {
+    "id": "pf_steelcase_chair",
+    "productName": "Steelcase task chair",
+    "manufacturer": "Steelcase",
+    "kgCo2e": 72.0,
+    "lifespanYears": 10.0,
+    "pctManufacturing": 0.8,
+    "source": "Steelcase EPD"
+  }
+]

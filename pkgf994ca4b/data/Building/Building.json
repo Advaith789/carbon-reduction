@@ -1,0 +1,62 @@
+[
+  {
+    "id": "chemistry_building",
+    "name": "Chemistry Building",
+    "latitude": 43.0736,
+    "longitude": -89.3995
+  },
+  {
+    "id": "engineering_hall",
+    "name": "Engineering Hall",
+    "latitude": 43.0717,
+    "longitude": -89.4115
+  },
+  {
+    "id": "biochemistry",
+    "name": "Hector F. DeLuca Biochemistry Bldg",
+    "latitude": 43.073,
+    "longitude": -89.4215
+  },
+  {
+    "id": "microbial_sciences",
+    "name": "Microbial Sciences Building",
+    "latitude": 43.076,
+    "longitude": -89.4135
+  },
+  {
+    "id": "computer_sciences",
+    "name": "Computer Sciences Building",
+    "latitude": 43.0712,
+    "longitude": -89.4073
+  },
+  {
+    "id": "chamberlin_hall",
+    "name": "Chamberlin Hall",
+    "latitude": 43.0742,
+    "longitude": -89.404
+  },
+  {
+    "id": "medical_sciences",
+    "name": "Medical Sciences Center",
+    "latitude": 43.0772,
+    "longitude": -89.4303
+  },
+  {
+    "id": "grainger_hall",
+    "name": "Grainger Hall",
+    "latitude": 43.073,
+    "longitude": -89.4007
+  },
+  {
+    "id": "van_vleck",
+    "name": "Van Vleck Hall",
+    "latitude": 43.0744,
+    "longitude": -89.4047
+  },
+  {
+    "id": "wid",
+    "name": "Wisconsin Institutes for Discovery",
+    "latitude": 43.0708,
+    "longitude": -89.4075
+  }
+]

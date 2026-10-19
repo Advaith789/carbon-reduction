@@ -1,0 +1,85 @@
+/**
+ * An incoming purchase request, evaluated by the intercept **before** it becomes a
+ * {@link SpendTransaction}.
+ *
+ * This is the demand side of the purchase-intercept flow and the point where emissions are
+ * *prevented* rather than merely reported. The intercept proposes a ladder of levers —
+ * reuse an {@link InventoryItem} nearby, substitute a lower-carbon {@link Contract} option,
+ * consolidate with another request in the same building, or defer — each scored in avoided
+ * tonnes CO2e and dollars.
+ *
+ * The intercept **suggests, never blocks**: the requester accepts or declines with a reason,
+ * and declines become "barriers to reuse" signal for the planner.
+ */
+entity type PurchaseRequest schema name "PURCHASE_REQUEST" {
+
+  /**
+   * Unique identifier for the request.
+   */
+  id: !string
+
+  /**
+   * Name of the product being requested.
+   */
+  productName: !string
+
+  /**
+   * The {@link ProductCategory} of the request, which carries the EPA emission factor used
+   * to estimate its embodied carbon. Inverse of {@link ProductCategory#purchaseRequests}.
+   */
+  productCategory: ProductCategory
+
+  /**
+   * The {@link Department} making the request — the requester and budget owner.
+   */
+  department: Department
+
+  /**
+   * The {@link Building} the goods would be delivered to. Drives same-building reuse and
+   * consolidation matching.
+   */
+  building: Building
+
+  /**
+   * The {@link Vendor} the request would be placed with, when already chosen.
+   */
+  vendor: Vendor
+
+  /**
+   * Number of units requested.
+   */
+  quantity: !int
+
+  /**
+   * Price per unit in USD.
+   */
+  unitPrice: !double
+
+  /**
+   * Total request value in USD (`quantity * unitPrice`). Drives the spend-based carbon
+   * estimate for the request.
+   */
+  amount: !double
+
+  /**
+   * Name of the requester.
+   */
+  requestedBy: string
+
+  /**
+   * When the request was submitted.
+   */
+  requestDate: datetime
+
+  /**
+   * Workflow state — one of `Pending`, `Approved`, `Reused`, `Substituted`, `Consolidated`,
+   * or `Declined`. Anything other than `Pending`/`Approved` means a lever was taken.
+   */
+  status: string
+
+  /**
+   * Requester's stated justification, and (after a decision) the reason a suggestion was
+   * accepted or declined.
+   */
+  justification: string
+}

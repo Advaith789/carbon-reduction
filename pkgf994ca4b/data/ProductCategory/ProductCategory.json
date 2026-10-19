@@ -1,0 +1,106 @@
+[
+  {
+    "id": "lab_supplies",
+    "name": "Lab Supplies & Reagents",
+    "description": "Chemicals, reagents and general laboratory consumables.",
+    "emissionFactor": {
+      "id": "325180"
+    }
+  },
+  {
+    "id": "lab_instruments",
+    "name": "Lab & Analytical Instruments",
+    "description": "Analytical and laboratory instruments and equipment.",
+    "emissionFactor": {
+      "id": "334516"
+    }
+  },
+  {
+    "id": "it_hardware",
+    "name": "IT Hardware & Computers",
+    "description": "Laptops, desktops, servers and computer peripherals.",
+    "emissionFactor": {
+      "id": "334111"
+    }
+  },
+  {
+    "id": "software",
+    "name": "Software & Licenses",
+    "description": "Software licenses and subscriptions.",
+    "emissionFactor": {
+      "id": "511210"
+    }
+  },
+  {
+    "id": "office_supplies",
+    "name": "Office Supplies",
+    "description": "General office consumables (except paper).",
+    "emissionFactor": {
+      "id": "339940"
+    }
+  },
+  {
+    "id": "paper",
+    "name": "Paper Products",
+    "description": "Printing and writing paper.",
+    "emissionFactor": {
+      "id": "322121"
+    }
+  },
+  {
+    "id": "furniture",
+    "name": "Office & Lab Furniture",
+    "description": "Office and laboratory furniture.",
+    "emissionFactor": {
+      "id": "337214"
+    }
+  },
+  {
+    "id": "industrial_mro",
+    "name": "Industrial & MRO Supplies",
+    "description": "Hardware, tools and maintenance supplies.",
+    "emissionFactor": {
+      "id": "332510"
+    }
+  },
+  {
+    "id": "industrial_gas",
+    "name": "Industrial & Lab Gases",
+    "description": "Compressed and cryogenic gases.",
+    "emissionFactor": {
+      "id": "325120"
+    }
+  },
+  {
+    "id": "plastics",
+    "name": "Plastics & Labware",
+    "description": "Plastic labware, resins and packaging.",
+    "emissionFactor": {
+      "id": "325211"
+    }
+  },
+  {
+    "id": "pharma",
+    "name": "Pharmaceuticals & Biologicals",
+    "description": "Enzymes, kits and biological reagents.",
+    "emissionFactor": {
+      "id": "325411"
+    }
+  },
+  {
+    "id": "air_travel",
+    "name": "Air Travel",
+    "description": "Scheduled passenger air transportation.",
+    "emissionFactor": {
+      "id": "481111"
+    }
+  },
+  {
+    "id": "shipping",
+    "name": "Shipping & Courier",
+    "description": "Courier and express delivery services.",
+    "emissionFactor": {
+      "id": "492110"
+    }
+  }
+]

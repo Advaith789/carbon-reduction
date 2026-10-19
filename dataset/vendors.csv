@@ -1,0 +1,14 @@
+id,name,naics_code
+v_cdw,CDW Government LLC,423430
+v_dell,Dell Technologies,334111
+v_apple,Apple Inc,334111
+v_lenovo,Lenovo United States,334111
+v_hp,HP Inc,334111
+v_dellmon,Dell Displays,334118
+v_fisher,Fisher Scientific,334516
+v_thermo,Thermo Fisher Scientific,334516
+v_sigma,MilliporeSigma,325194
+v_vwr,VWR International,325180
+v_grainger,W.W. Grainger,337214
+v_steelcase,Steelcase,337214
+v_zeiss,Carl Zeiss,333314

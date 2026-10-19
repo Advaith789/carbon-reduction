@@ -1,0 +1,29 @@
+[
+  {
+    "id": "goal_2030",
+    "name": "2030 interim target",
+    "targetYear": 2030,
+    "baselineYear": 2024,
+    "reductionPct": 0.2,
+    "scope": "Scope 3 - purchased goods & services",
+    "description": "Interim milestone on the glide path to net zero: cut embodied purchasing emissions 20% vs the FY2024 baseline. Reachable with today's levers, but only if the wet-lab categories contribute."
+  },
+  {
+    "id": "goal_2040",
+    "name": "2040 interim target",
+    "targetYear": 2040,
+    "baselineYear": 2024,
+    "reductionPct": 0.45,
+    "scope": "Scope 3 - purchased goods & services",
+    "description": "Deeper milestone that near-term levers cannot reach: purchasing discipline alone caps out near 24%. Reaching 45% requires the structural 2040-horizon levers - supplier decarbonisation, helium recapture, chemistry redesign - so the gap is closed by a different kind of action, not by trimming harder. That is the finding, not a bug."
+  },
+  {
+    "id": "goal_2048",
+    "name": "Net zero 2048",
+    "targetYear": 2048,
+    "baselineYear": 2024,
+    "reductionPct": 0.95,
+    "scope": "All scopes (1, 2 and 3)",
+    "description": "UW-Madison bicentennial net-zero commitment; residual emissions offset."
+  }
+]

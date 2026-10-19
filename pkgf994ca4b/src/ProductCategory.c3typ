@@ -1,0 +1,61 @@
+/**
+ * A product/industry category used to classify what a vendor actually sells.
+ *
+ * This is the curated bridge that stands in for Badger Footprint's LLM vendor classifier in
+ * the demo: each category maps a group of vendors to exactly one {@link EmissionFactor}, so
+ * real spend flows through a real EPA factor to produce a grounded carbon estimate.
+ */
+entity type ProductCategory schema name "PRODUCT_CATEGORY" {
+
+  /**
+   * Unique identifier, e.g. `"lab_supplies"` or `"it_hardware"`.
+   */
+  id: !string
+
+  /**
+   * Display name of the category (e.g. `"Lab Supplies & Chemicals"`).
+   */
+  name: !string
+
+  /**
+   * Optional prose describing what kinds of purchases fall into this category and why it maps
+   * to the chosen NAICS commodity.
+   */
+  description: string
+
+  /**
+   * The {@link EmissionFactor} (EPA NAICS commodity) used to estimate carbon for spend in this
+   * category. Inverse of {@link EmissionFactor#productCategories}.
+   */
+  emissionFactor: EmissionFactor
+
+  /**
+   * The {@link Vendor} records classified under this category. Inverse of
+   * {@link Vendor#productCategory}.
+   */
+  vendors: [Vendor](productCategory)
+
+  /**
+   * The {@link SpendTransaction} records assigned to this category. Inverse of
+   * {@link SpendTransaction#productCategory}.
+   */
+  transactions: [SpendTransaction](productCategory)
+
+  /**
+   * Surplus stock held in this category, searched for reuse matches. Inverse of
+   * {@link InventoryItem#productCategory}.
+   */
+  inventoryItems: [InventoryItem](productCategory)
+
+  /**
+   * Incoming purchase requests in this category. Inverse of
+   * {@link PurchaseRequest#productCategory}.
+   */
+  purchaseRequests: [PurchaseRequest](productCategory)
+
+  /**
+   * Reduction levers available in this category, with their feasibility ceilings and
+   * abatement costs. Inverse of {@link ReductionLever#productCategory}.
+   */
+  reductionLevers: [ReductionLever](productCategory)
+}

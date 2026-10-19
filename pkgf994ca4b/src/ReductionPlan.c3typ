@@ -1,0 +1,95 @@
+/**
+ * A saved reduction plan produced by {@link PlannerAgent#solve}.
+ *
+ * Stores the **inputs** (target year, pins, strategy, baseline year) alongside the solved
+ * outputs, so a plan can be re-opened, compared against another plan, or re-solved after the
+ * underlying {@link ReductionLever} assumptions change. Because
+ * {@link PlannerAgent#savePlan} always re-solves from the spec before writing, the stored
+ * allocation can never drift out of agreement with the solver.
+ *
+ * Infeasible plans are saved too — "we tried to hold lab chemicals at 5% and could not reach
+ * 2030" is a result worth keeping and showing to the people who set that constraint.
+ */
+entity type ReductionPlan schema name "REDUCTION_PLAN" {
+
+  /**
+   * Unique identifier for the plan.
+   */
+  id: !string
+
+  /**
+   * Display name of the plan (e.g. `"2030 with lab chemicals held at 5%"`).
+   */
+  name: !string
+
+  /**
+   * The {@link SustainabilityGoal} target year this plan aims at. Also determines which
+   * levers were in play, via {@link ReductionLever#horizonYear}.
+   */
+  targetYear: !int
+
+  /**
+   * Redistribution strategy used — `equal_pct`, `cheapest_first` or `effort_balanced`.
+   */
+  strategy: string
+
+  /**
+   * Baseline fiscal year the reduction is measured against.
+   */
+  baselineFiscalYear: int
+
+  /**
+   * Measured baseline emissions in tonnes CO2e for {@link ReductionPlan#baselineFiscalYear}.
+   */
+  baselineTonnes: double
+
+  /**
+   * Tonnes CO2e the goal requires be cut from the baseline.
+   */
+  needTonnes: double
+
+  /**
+   * Tonnes CO2e this allocation actually achieves. Equals
+   * {@link ReductionPlan#needTonnes} on a feasible plan and falls short of it otherwise.
+   */
+  achievedTonnes: double
+
+  /**
+   * Whether the goal is reachable under this plan's pins and ceilings.
+   */
+  feasible: boolean
+
+  /**
+   * Tonnes CO2e still unaccounted for; `0` on a feasible plan.
+   */
+  shortfallTonnes: double
+
+  /**
+   * Net cost of the plan in USD across all selected levers. **Negative means the plan saves
+   * money overall**, because reuse and refurbished purchasing carry negative
+   * {@link ReductionLever#costPerTonne}.
+   */
+  totalCostUsd: double
+
+  /**
+   * The pinned categories as supplied by the caller — a map of {@link ProductCategory} id to
+   * the percentage cut it was held at. Preserved so the plan can be re-solved.
+   */
+  pins: json
+
+  /**
+   * The full solved allocation: per category, the cut taken and the specific levers composing
+   * it with their owners. This is the shareable work plan.
+   */
+  allocation: json
+
+  /**
+   * Who the plan is attributed to.
+   */
+  createdBy: string
+
+  /**
+   * Free-text rationale or caveats recorded with the plan.
+   */
+  notes: string
+}

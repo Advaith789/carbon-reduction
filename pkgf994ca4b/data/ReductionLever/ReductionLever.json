@@ -1,0 +1,457 @@
+[
+  {
+    "id": "lever_01_lab_supplies",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "name": "Share unopened consumables between labs",
+    "maxReductionPct": 0.07,
+    "costPerTonne": -210,
+    "effortLevel": "Medium",
+    "owner": "Research Ops / PI labs",
+    "horizonYear": 2030,
+    "description": "Offer surplus unopened reagents and consumables to labs in the same building before ordering new. Feeds directly off the purchase-intercept inventory."
+  },
+  {
+    "id": "lever_02_lab_supplies",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "name": "Consolidate orders & right-size packs",
+    "maxReductionPct": 0.06,
+    "costPerTonne": -120,
+    "effortLevel": "Low",
+    "owner": "Purchasing Services",
+    "horizonYear": 2030,
+    "description": "Batch lab orders to a weekly cycle and pick pack sizes that match actual consumption instead of catalogue defaults."
+  },
+  {
+    "id": "lever_03_lab_supplies",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "name": "Green-chemistry supplier substitution",
+    "maxReductionPct": 0.05,
+    "costPerTonne": 190,
+    "effortLevel": "High",
+    "owner": "Research PIs",
+    "horizonYear": 2030,
+    "description": "Switch to reformulated or lower-carbon suppliers where protocols allow. Capped low because research continuity comes first."
+  },
+  {
+    "id": "lever_04_plastics",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "name": "Reusable labware substitution",
+    "maxReductionPct": 0.13,
+    "costPerTonne": -90,
+    "effortLevel": "Medium",
+    "owner": "Research Ops",
+    "horizonYear": 2030,
+    "description": "Replace single-use plastic labware with autoclavable glass or reusable alternatives where protocols allow."
+  },
+  {
+    "id": "lever_05_plastics",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "name": "Bulk packaging & pack-size right-sizing",
+    "maxReductionPct": 0.07,
+    "costPerTonne": -40,
+    "effortLevel": "Low",
+    "owner": "Purchasing Services",
+    "horizonYear": 2030,
+    "description": "Buy labware in bulk packaging to cut per-unit packaging material and inbound shipments."
+  },
+  {
+    "id": "lever_06_plastics",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "name": "Validated tip & plate wash-and-reuse",
+    "maxReductionPct": 0.05,
+    "costPerTonne": 70,
+    "effortLevel": "High",
+    "owner": "Research Ops",
+    "horizonYear": 2030,
+    "description": "Validated washing programme for pipette tips and plates in non-sterile workflows. High effort because each protocol needs sign-off."
+  },
+  {
+    "id": "lever_07_industrial_gas",
+    "productCategory": {
+      "id": "industrial_gas"
+    },
+    "name": "Cylinder right-sizing & leak reduction",
+    "maxReductionPct": 0.08,
+    "costPerTonne": 45,
+    "effortLevel": "High",
+    "owner": "Facilities / EHS",
+    "horizonYear": 2030,
+    "description": "Reduce cylinder turnover and fix regulator and line leaks. The single largest carbon category on campus purchasing."
+  },
+  {
+    "id": "lever_08_industrial_gas",
+    "productCategory": {
+      "id": "industrial_gas"
+    },
+    "name": "On-demand nitrogen generation",
+    "maxReductionPct": 0.07,
+    "costPerTonne": 180,
+    "effortLevel": "High",
+    "owner": "Facilities",
+    "horizonYear": 2030,
+    "description": "Replace delivered liquid nitrogen with on-site generation in the highest-use buildings, cutting boil-off and delivery volume."
+  },
+  {
+    "id": "lever_09_industrial_gas",
+    "productCategory": {
+      "id": "industrial_gas"
+    },
+    "name": "Shared cylinder pool per building",
+    "maxReductionPct": 0.05,
+    "costPerTonne": -70,
+    "effortLevel": "Medium",
+    "owner": "Facilities",
+    "horizonYear": 2030,
+    "description": "Pool cylinders across labs in a building so idle full cylinders are used before new ones are ordered."
+  },
+  {
+    "id": "lever_10_pharma",
+    "productCategory": {
+      "id": "pharma"
+    },
+    "name": "Reagent sharing & cold-chain batching",
+    "maxReductionPct": 0.15,
+    "costPerTonne": -30,
+    "effortLevel": "High",
+    "owner": "Core facilities",
+    "horizonYear": 2030,
+    "description": "Batch orders to cut shipments, share enzymes/kits via core facilities before expiry."
+  },
+  {
+    "id": "lever_11_lab_instruments",
+    "productCategory": {
+      "id": "lab_instruments"
+    },
+    "name": "Shared instrumentation cores",
+    "maxReductionPct": 0.3,
+    "costPerTonne": -220,
+    "effortLevel": "Medium",
+    "owner": "Research Cores",
+    "horizonYear": 2030,
+    "description": "Route duplicate instrument purchases to shared research cores; buy serviced/refurbished instruments."
+  },
+  {
+    "id": "lever_12_it_hardware",
+    "productCategory": {
+      "id": "it_hardware"
+    },
+    "name": "Extend refresh cycle & buy refurbished",
+    "maxReductionPct": 0.45,
+    "costPerTonne": -400,
+    "effortLevel": "Low",
+    "owner": "DoIT / Purchasing",
+    "horizonYear": 2030,
+    "description": "Extend laptop refresh from 4 to 5 years and buy a share as certified refurbished. Saves money and carbon; the cheapest lever available."
+  },
+  {
+    "id": "lever_13_software",
+    "productCategory": {
+      "id": "software"
+    },
+    "name": "License rationalisation",
+    "maxReductionPct": 0.2,
+    "costPerTonne": -120,
+    "effortLevel": "Low",
+    "owner": "DoIT",
+    "horizonYear": 2030,
+    "description": "Reclaim unused seats and consolidate overlapping products at renewal."
+  },
+  {
+    "id": "lever_14_office_supplies",
+    "productCategory": {
+      "id": "office_supplies"
+    },
+    "name": "Campus surplus (SWAP) first",
+    "maxReductionPct": 0.35,
+    "costPerTonne": -150,
+    "effortLevel": "Low",
+    "owner": "Purchasing / SWAP",
+    "horizonYear": 2030,
+    "description": "Check campus surplus before new office orders; standardise on a shorter catalogue."
+  },
+  {
+    "id": "lever_15_paper",
+    "productCategory": {
+      "id": "paper"
+    },
+    "name": "Default duplex & digital-first workflows",
+    "maxReductionPct": 0.4,
+    "costPerTonne": -90,
+    "effortLevel": "Low",
+    "owner": "DoIT / Units",
+    "horizonYear": 2030,
+    "description": "Duplex-by-default printing and digital forms; recycled-content paper on contract."
+  },
+  {
+    "id": "lever_16_furniture",
+    "productCategory": {
+      "id": "furniture"
+    },
+    "name": "Refurbished & SWAP furniture",
+    "maxReductionPct": 0.5,
+    "costPerTonne": -300,
+    "effortLevel": "Low",
+    "owner": "Purchasing / SWAP",
+    "horizonYear": 2030,
+    "description": "Source from campus surplus and refurbished lines at renewal or move-in. Large ceiling because furniture is highly reusable."
+  },
+  {
+    "id": "lever_17_industrial_mro",
+    "productCategory": {
+      "id": "industrial_mro"
+    },
+    "name": "Consolidated MRO & repair-first",
+    "maxReductionPct": 0.25,
+    "costPerTonne": -40,
+    "effortLevel": "Medium",
+    "owner": "Facilities",
+    "horizonYear": 2030,
+    "description": "Repair-first policy and consolidated weekly MRO deliveries per building."
+  },
+  {
+    "id": "lever_18_air_travel",
+    "productCategory": {
+      "id": "air_travel"
+    },
+    "name": "Travel policy & virtual-first",
+    "maxReductionPct": 0.35,
+    "costPerTonne": 110,
+    "effortLevel": "High",
+    "owner": "Units / Provost",
+    "horizonYear": 2030,
+    "description": "Virtual-first for short meetings, rail for regional trips, cap per-unit travel budgets."
+  },
+  {
+    "id": "lever_19_shipping",
+    "productCategory": {
+      "id": "shipping"
+    },
+    "name": "Consolidate inbound shipments",
+    "maxReductionPct": 0.3,
+    "costPerTonne": -70,
+    "effortLevel": "Medium",
+    "owner": "Purchasing",
+    "horizonYear": 2030,
+    "description": "Weekly consolidated deliveries per building instead of per-order shipping; drop expedited by default."
+  },
+  {
+    "id": "lever_20_industrial_gas",
+    "productCategory": {
+      "id": "industrial_gas"
+    },
+    "name": "Closed-loop helium recapture",
+    "maxReductionPct": 0.25,
+    "costPerTonne": 320,
+    "effortLevel": "High",
+    "owner": "Facilities / Research Cores",
+    "horizonYear": 2040,
+    "description": "Helium recovery and re-liquefaction on NMR and cryogenic systems, which recapture the large majority of boil-off. Capital-intensive with a multi-year payback, so it cannot be stood up by 2030."
+  },
+  {
+    "id": "lever_21_industrial_gas",
+    "productCategory": {
+      "id": "industrial_gas"
+    },
+    "name": "Low-carbon gas supply contract",
+    "maxReductionPct": 0.15,
+    "costPerTonne": 95,
+    "effortLevel": "Medium",
+    "owner": "Purchasing Services",
+    "horizonYear": 2040,
+    "description": "Contract air-separation supply from renewable-powered plants. Cuts the emission factor itself rather than the volume, so it stacks on top of the usage levers."
+  },
+  {
+    "id": "lever_22_lab_supplies",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "name": "Supplier decarbonisation requirements",
+    "maxReductionPct": 0.18,
+    "costPerTonne": 140,
+    "effortLevel": "High",
+    "owner": "Purchasing / Sustainability",
+    "horizonYear": 2040,
+    "description": "Write product-carbon-footprint disclosure and absolute reduction targets into reagent and consumable contracts at renewal. Depends on the supplier market maturing."
+  },
+  {
+    "id": "lever_23_lab_supplies",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "name": "Green chemistry protocol redesign",
+    "maxReductionPct": 0.1,
+    "costPerTonne": 260,
+    "effortLevel": "High",
+    "owner": "Research PIs / Chemistry",
+    "horizonYear": 2040,
+    "description": "Redesign high-volume teaching and screening protocols around benign solvents and micro-scale methods. Needs curriculum and methods revalidation."
+  },
+  {
+    "id": "lever_24_plastics",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "name": "Closed-loop labware take-back",
+    "maxReductionPct": 0.16,
+    "costPerTonne": 60,
+    "effortLevel": "Medium",
+    "owner": "Research Ops / Vendors",
+    "horizonYear": 2040,
+    "description": "Vendor take-back and closed-loop recycling for sterile plastics, plus recycled-content resin specifications on contract."
+  },
+  {
+    "id": "lever_25_plastics",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "name": "Bio-based resin substitution",
+    "maxReductionPct": 0.1,
+    "costPerTonne": 210,
+    "effortLevel": "High",
+    "owner": "Purchasing Services",
+    "horizonYear": 2040,
+    "description": "Bio-based and recycled-content labware wherever sterility and chemical compatibility allow. Gated on supplier qualification."
+  },
+  {
+    "id": "lever_26_pharma",
+    "productCategory": {
+      "id": "pharma"
+    },
+    "name": "Supplier PCF targets at renewal",
+    "maxReductionPct": 0.15,
+    "costPerTonne": 150,
+    "effortLevel": "High",
+    "owner": "Purchasing Services",
+    "horizonYear": 2040,
+    "description": "Require product carbon footprints and reduction commitments from pharmaceutical and biologics suppliers at contract renewal."
+  },
+  {
+    "id": "lever_27_lab_instruments",
+    "productCategory": {
+      "id": "lab_instruments"
+    },
+    "name": "Instrument lifetime extension programme",
+    "maxReductionPct": 0.15,
+    "costPerTonne": -80,
+    "effortLevel": "Medium",
+    "owner": "Research Cores",
+    "horizonYear": 2040,
+    "description": "Funded service, calibration and parts programme that pushes instrument lifetimes well past warranty instead of replacing."
+  },
+  {
+    "id": "lever_28_it_hardware",
+    "productCategory": {
+      "id": "it_hardware"
+    },
+    "name": "Supplier PCF targets & device-as-a-service",
+    "maxReductionPct": 0.15,
+    "costPerTonne": 25,
+    "effortLevel": "Medium",
+    "owner": "DoIT",
+    "horizonYear": 2040,
+    "description": "Device-as-a-service with guaranteed refurbishment and take-back, plus supplier carbon targets in the standard laptop contract."
+  },
+  {
+    "id": "lever_29_software",
+    "productCategory": {
+      "id": "software"
+    },
+    "name": "Carbon-aware cloud procurement",
+    "maxReductionPct": 0.15,
+    "costPerTonne": 30,
+    "effortLevel": "Medium",
+    "owner": "DoIT",
+    "horizonYear": 2040,
+    "description": "Region and vendor selection weighted by grid carbon intensity; efficiency clauses in cloud and SaaS renewals."
+  },
+  {
+    "id": "lever_30_office_supplies",
+    "productCategory": {
+      "id": "office_supplies"
+    },
+    "name": "Supplier take-back & refill standards",
+    "maxReductionPct": 0.15,
+    "costPerTonne": 20,
+    "effortLevel": "Low",
+    "owner": "Purchasing",
+    "horizonYear": 2040,
+    "description": "Refill-first standards and vendor take-back for consumables, written into the office supplies contract."
+  },
+  {
+    "id": "lever_31_paper",
+    "productCategory": {
+      "id": "paper"
+    },
+    "name": "Paperless-by-default systems",
+    "maxReductionPct": 0.15,
+    "costPerTonne": -60,
+    "effortLevel": "Medium",
+    "owner": "DoIT",
+    "horizonYear": 2040,
+    "description": "Retire paper-based administrative workflows at the system level rather than relying on individual printing behaviour."
+  },
+  {
+    "id": "lever_32_furniture",
+    "productCategory": {
+      "id": "furniture"
+    },
+    "name": "Circular furniture contracts",
+    "maxReductionPct": 0.1,
+    "costPerTonne": -50,
+    "effortLevel": "Low",
+    "owner": "Purchasing / SWAP",
+    "horizonYear": 2040,
+    "description": "Lease-and-return and remanufacture-to-order furniture contracts that keep material in service indefinitely."
+  },
+  {
+    "id": "lever_33_industrial_mro",
+    "productCategory": {
+      "id": "industrial_mro"
+    },
+    "name": "Circular MRO & supplier targets",
+    "maxReductionPct": 0.15,
+    "costPerTonne": 55,
+    "effortLevel": "Medium",
+    "owner": "Facilities",
+    "horizonYear": 2040,
+    "description": "Remanufactured parts as the default and carbon reduction targets in MRO supply agreements."
+  },
+  {
+    "id": "lever_34_air_travel",
+    "productCategory": {
+      "id": "air_travel"
+    },
+    "name": "Sustainable aviation fuel & rail-first",
+    "maxReductionPct": 0.15,
+    "costPerTonne": 290,
+    "effortLevel": "High",
+    "owner": "Provost",
+    "horizonYear": 2040,
+    "description": "SAF certificate purchasing for unavoidable travel plus a hard rail-first rule for regional trips. Expensive per tonne and dependent on SAF supply."
+  },
+  {
+    "id": "lever_35_shipping",
+    "productCategory": {
+      "id": "shipping"
+    },
+    "name": "Electrified last-mile & logistics targets",
+    "maxReductionPct": 0.15,
+    "costPerTonne": 40,
+    "effortLevel": "Medium",
+    "owner": "Purchasing",
+    "horizonYear": 2040,
+    "description": "Electrified campus last-mile delivery and carbon targets in freight contracts."
+  }
+]
