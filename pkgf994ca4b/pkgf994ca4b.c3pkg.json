@@ -1,0 +1,9 @@
+{
+  "author": "{{author}}",
+  "name": "pkgf994ca4b",
+  "description": "{{description}}",
+  "dependencies": {
+    "mcpServer": "8.10"
+  },
+  "version": "1.0.0"
+}
