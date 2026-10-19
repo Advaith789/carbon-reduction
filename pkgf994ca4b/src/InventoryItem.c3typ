@@ -1,0 +1,73 @@
+/**
+ * Surplus or excess stock on hand at a specific {@link Building} / {@link Department}.
+ *
+ * This is the reuse supply side of the purchase-intercept flow: before a
+ * {@link PurchaseRequest} is approved, the intercept looks for an InventoryItem carrying
+ * spare units of the same product — preferring the **same building** (zero logistics), then
+ * the **same department**, then elsewhere on campus. Stands in for a UW inventory/SWAP
+ * surplus API; in the demo this type *is* the mock.
+ *
+ * Scope note: only safe-to-share categories are listed (office supplies, furniture,
+ * electronics, unopened consumables). Opened chemicals and biologics are deliberately
+ * excluded for safety and compliance reasons.
+ */
+entity type InventoryItem schema name "INVENTORY_ITEM" {
+
+  /**
+   * Unique identifier for the inventory line.
+   */
+  id: !string
+
+  /**
+   * Name of the product held in stock (e.g. `"Pipette tips, 1000uL (unopened case)"`).
+   */
+  productName: !string
+
+  /**
+   * The {@link ProductCategory} of the held product, used to price its avoided carbon.
+   * Inverse of {@link ProductCategory#inventoryItems}.
+   */
+  productCategory: ProductCategory
+
+  /**
+   * The {@link Department} that owns the stock — the donor in a reuse match.
+   */
+  department: Department
+
+  /**
+   * The {@link Building} the stock physically sits in. Proximity on this axis is what makes
+   * a reuse match practical.
+   */
+  building: Building
+
+  /**
+   * Total units currently on hand.
+   */
+  quantityOnHand: !int
+
+  /**
+   * Units the owner has flagged as excess and available to share. Only this portion is
+   * offered to a matching {@link PurchaseRequest}.
+   */
+  quantityExcess: !int
+
+  /**
+   * Replacement cost per unit in USD, used to value the dollars avoided by reusing.
+   */
+  unitPrice: double
+
+  /**
+   * Unit of issue label (e.g. `"case"`, `"box"`, `"each"`).
+   */
+  unitLabel: string
+
+  /**
+   * When the stock level was last confirmed.
+   */
+  lastUpdated: datetime
+
+  /**
+   * Free-text notes from the owning department (condition, storage location, caveats).
+   */
+  notes: string
+}

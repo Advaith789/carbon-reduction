@@ -1,0 +1,142 @@
+[
+  {
+    "id": "fisher_scientific",
+    "name": "Fisher Scientific",
+    "productCategory": {
+      "id": "lab_supplies"
+    }
+  },
+  {
+    "id": "vwr",
+    "name": "VWR International",
+    "productCategory": {
+      "id": "lab_supplies"
+    }
+  },
+  {
+    "id": "sigma_aldrich",
+    "name": "Sigma-Aldrich",
+    "productCategory": {
+      "id": "lab_supplies"
+    }
+  },
+  {
+    "id": "neb",
+    "name": "New England Biolabs",
+    "productCategory": {
+      "id": "pharma"
+    }
+  },
+  {
+    "id": "qiagen",
+    "name": "Qiagen",
+    "productCategory": {
+      "id": "pharma"
+    }
+  },
+  {
+    "id": "thermo_fisher",
+    "name": "Thermo Fisher Scientific",
+    "productCategory": {
+      "id": "lab_instruments"
+    }
+  },
+  {
+    "id": "cdw",
+    "name": "CDW Government",
+    "productCategory": {
+      "id": "it_hardware"
+    }
+  },
+  {
+    "id": "dell",
+    "name": "Dell Technologies",
+    "productCategory": {
+      "id": "it_hardware"
+    }
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "productCategory": {
+      "id": "it_hardware"
+    }
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "productCategory": {
+      "id": "software"
+    }
+  },
+  {
+    "id": "oracle",
+    "name": "Oracle",
+    "productCategory": {
+      "id": "software"
+    }
+  },
+  {
+    "id": "staples",
+    "name": "Staples",
+    "productCategory": {
+      "id": "office_supplies"
+    }
+  },
+  {
+    "id": "uline",
+    "name": "Uline",
+    "productCategory": {
+      "id": "plastics"
+    }
+  },
+  {
+    "id": "grainger",
+    "name": "W.W. Grainger",
+    "productCategory": {
+      "id": "industrial_mro"
+    }
+  },
+  {
+    "id": "mcmaster",
+    "name": "McMaster-Carr",
+    "productCategory": {
+      "id": "industrial_mro"
+    }
+  },
+  {
+    "id": "airgas",
+    "name": "Airgas",
+    "productCategory": {
+      "id": "industrial_gas"
+    }
+  },
+  {
+    "id": "steelcase",
+    "name": "Steelcase",
+    "productCategory": {
+      "id": "furniture"
+    }
+  },
+  {
+    "id": "delta",
+    "name": "Delta Air Lines",
+    "productCategory": {
+      "id": "air_travel"
+    }
+  },
+  {
+    "id": "united",
+    "name": "United Airlines",
+    "productCategory": {
+      "id": "air_travel"
+    }
+  },
+  {
+    "id": "fedex",
+    "name": "FedEx",
+    "productCategory": {
+      "id": "shipping"
+    }
+  }
+]

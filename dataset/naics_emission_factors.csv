@@ -1,0 +1,13 @@
+naics_code,naics_title,kg_co2e_per_usd,source
+334111,Electronic Computer Manufacturing,0.0574,EPA_USEEIO_v1.3_USD2022_REAL
+334118,Computer Terminal & Peripheral Equipment Mfg,0.1413,EPA_USEEIO_v1.3_USD2022_REAL
+334220,Wireless Comm & Broadcast Equipment Mfg,0.1089,EPA_USEEIO_v1.3_USD2022_REAL
+334516,Analytical Laboratory Instrument Mfg,0.1005,EPA_USEEIO_v1.3_USD2022_REAL
+333314,Optical Instrument & Lens Mfg,0.1711,EPA_USEEIO_v1.3_USD2022_REAL
+333244,Printing Machinery & Equipment Mfg,0.1826,EPA_USEEIO_v1.3_USD2022_REAL
+339112,Surgical & Medical Instrument Mfg,0.1542,EPA_USEEIO_v1.3_USD2022_REAL
+337214,Office Furniture (except Wood) Mfg,0.2363,EPA_USEEIO_v1.3_USD2022_REAL
+325180,Other Basic Inorganic Chemical Mfg,1.0076,EPA_USEEIO_v1.3_USD2022_REAL
+325194,Cyclic Crude & Intermediate Chemical Mfg,1.1817,EPA_USEEIO_v1.3_USD2022_REAL
+423430,Computer & Peripheral Equipment Wholesalers,0.0728,EPA_USEEIO_v1.3_USD2022_REAL
+541511,Custom Computer Programming Services,0.0823,EPA_USEEIO_v1.3_USD2022_REAL

@@ -1,0 +1,34 @@
+/**
+ * A UW purchasing contract with a {@link Vendor} for a specific product.
+ *
+ * Contracts keep swap recommendations realistic — the Alternatives logic prefers lower-carbon
+ * options that UW can already buy under an existing contract. Fabricated for the demo (UW's
+ * contract catalog is not available as a direct download).
+ */
+entity type Contract schema name "CONTRACT" {
+
+  /**
+   * Unique identifier for the contract.
+   */
+  id: !string
+
+  /**
+   * The {@link Vendor} party to the contract. Inverse of {@link Vendor#contracts}.
+   */
+  vendor: !Vendor
+
+  /**
+   * Name of the product or product line covered by the contract.
+   */
+  productName: !string
+
+  /**
+   * Contracted unit price in USD, when applicable.
+   */
+  unitPrice: double
+
+  /**
+   * Free-text description of the contract scope and terms.
+   */
+  description: string
+}

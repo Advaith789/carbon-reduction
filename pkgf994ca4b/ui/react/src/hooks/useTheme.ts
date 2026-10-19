@@ -16,26 +16,24 @@ const STORAGE_KEY = 'ui-theme';
 /**
  * Theme hook: toggles `dark` on <html> and persists preference.
  * Styling uses C3 tokens + shadcn CSS variables.
+ *
+ * **Dark is the default, not a preference.** Every colour decision in this
+ * application — the sequential ramp on the campus map and matrix, the
+ * categorical series, the reserved status palette — was contrast-validated
+ * against the dark chart surface, so light mode is an explicit opt-out rather
+ * than something inherited from the OS. The initial state is already `'dark'`,
+ * which also removes the white flash on first paint.
  */
 export const useTheme = (): { currentTheme: ThemeType; toggleTheme: () => void } => {
-  const [currentTheme, setCurrentTheme] = useState<ThemeType>('light');
+  const [currentTheme, setCurrentTheme] = useState<ThemeType>('dark');
 
   useEffect(() => {
     const html = document.documentElement;
-    html.classList.remove('dark');
 
     const stored = localStorage.getItem(STORAGE_KEY) as ThemeType | null;
-    const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-    let theme: ThemeType = 'light';
-    if (stored === 'dark' || stored === 'light') {
-      theme = stored;
-    } else if (prefersDark) {
-      theme = 'dark';
-    }
+    const theme: ThemeType = stored === 'light' ? 'light' : 'dark';
 
-    if (theme === 'dark') {
-      html.classList.add('dark');
-    }
+    html.classList.toggle('dark', theme === 'dark');
     setCurrentTheme(theme);
   }, []);
 

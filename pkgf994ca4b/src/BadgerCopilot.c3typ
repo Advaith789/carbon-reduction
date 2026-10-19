@@ -1,0 +1,121 @@
+/**
+ * The copilot — the agentic layer over the four deterministic agents.
+ *
+ * {@link BadgerAnalytics}, {@link InterceptAgent}, {@link PlannerAgent} and
+ * {@link ForecastAgent} are deterministic: each one executes a control flow a human wrote in
+ * advance. This type is the only thing in the application that **composes** that control flow at
+ * runtime. A question arrives in English, and the model decides which of those methods to call,
+ * in what order, and how to feed one's output into the next — a chain nobody enumerated
+ * beforehand.
+ *
+ * That distinction is the whole point. "Which building should I visit first, and is there spare
+ * stock there I could use instead of buying?" is not a report any of the three agents implements,
+ * because answering it means calling {@link BadgerAnalytics#buildingMap}, picking the worst
+ * building out of the result, and then querying {@link InterceptAgent#queue} against it. The
+ * copilot discovers that route; the three agents supply the arithmetic.
+ *
+ * **The grounding rule, which is absolute: the model never does arithmetic.** Every number that
+ * reaches the user originates from a tool result computed by one of the four deterministic types.
+ * The model's job is routing and narration — choosing the call and putting the answer in English.
+ * This is why the implementation is a tool-calling loop and not a retrieval ("RAG") pipeline:
+ * there is no document that contains "the 2030 shortfall if IT hardware is capped at 4%", so a
+ * retrieval system would have nothing to find and would invent the figure. A tool call computes it.
+ * Every executed call is returned in `toolCalls` so the UI can show its provenance beside the
+ * answer, and `grounded` is false whenever the model answered without calling anything.
+ *
+ * **Measured and projected are kept apart.** Ten of the twelve read tools return arithmetic over
+ * purchase orders that exist. The two `forecast_*` tools wrap {@link ForecastAgent}, which fits a
+ * regression over months that have not happened yet — a different epistemic category, and the only
+ * place in the application where a figure is extrapolated rather than counted. Their tool
+ * descriptions and the system prompt both require the model to label such a figure a projection and
+ * to quote its confidence band, and forbid adding one to a measured total. The arithmetic is still
+ * not the model's: it fits nothing and sums nothing, it reports what the regression returned.
+ *
+ * **Reads run automatically; writes are confirm-gated.** The twelve read-only methods across the
+ * four agents execute without asking. The two writes — {@link InterceptAgent#decide} and
+ * {@link PlannerAgent#savePlan} — are declared to the model but never executed by
+ * {@link BadgerCopilot#ask}, which instead returns the intended call as `pendingAction` for a
+ * human to approve through {@link BadgerCopilot#confirmAction}. This mirrors the intercept's own
+ * stated contract that it "suggests, never blocks": a language model may propose that a request be
+ * declined, but a person records the decision.
+ *
+ * **Units contract:** inherited unchanged from the four agents — tonnes CO2e as doubles, US
+ * dollars as whole units, and **percentages as 0–100 doubles** in both directions. The category
+ * identifiers and strategy names the model is allowed to emit are injected into its instructions
+ * from live {@link PlannerAgent#baseline} output rather than hardcoded, because a model asked to
+ * guess an identifier will confidently invent one (`IT_hardware` for `it_hardware`) and the
+ * resulting call then fails or, worse, silently matches nothing.
+ */
+type BadgerCopilot {
+
+  /**
+   * Answer one question, calling whichever agent methods the answer requires.
+   *
+   * Runs a bounded tool-calling loop: the model is given the full manifest from
+   * {@link BadgerCopilot#toolManifest} plus the caller's page and on-screen state, and may make
+   * several rounds of calls — feeding each result back — before it narrates. The loop is capped so
+   * a confused model degrades into a plain answer rather than looping forever.
+   *
+   * Returns an envelope of:
+   * - `reply` — the narrated answer. Every figure in it traces to a `toolCalls` entry.
+   * - `toolCalls` — every call actually executed, with its arguments, elapsed milliseconds and a
+   *   one-line summary. This is the provenance strip the UI renders under the answer; it is what
+   *   lets a sceptical reader confirm the number was computed rather than generated.
+   * - `uiAction` — an optional instruction for the caller to mutate its **own** state. The planner
+   *   uses `{type: "planner.applyPins", pins, targetYear, strategy}` so that "we can only cut
+   *   laptops 4%" physically moves the sliders and re-renders the gap meter. The pins carried here
+   *   are read back off the arguments the solver was actually invoked with, never re-stated by the
+   *   model, so the controls and the narration cannot drift apart.
+   * - `pendingAction` — a write the model wants to make, held for human approval. Never executed
+   *   here.
+   * - `grounded` — false when the model answered with no tool call, which the UI should mark as
+   *   unverified.
+   * - `error` — populated instead of throwing, so a chat failure never takes the page down.
+   *
+   * Takes a single spec object rather than positional parameters, matching the one-argument
+   * shape the frontend's `c3Action` helper already uses successfully for `fetch` and `evaluate`.
+   * A multi-parameter signature would be ambiguous over that transport, because the helper
+   * prepends the type name to the argument array.
+   *
+   * @param spec
+   *        An object carrying:
+   *        - `message` (string, required) — the user's question in natural language.
+   *        - `page` (string) — which page asked: `"overview"`, `"planner"`, `"intercept"`,
+   *          `"map"` or `"methodology"`. Biases tool selection toward that page's agent and
+   *          decides whether a `uiAction` is meaningful. Omit for an unscoped question.
+   *        - `scenario` (object) — the caller's live on-screen state; for the planner, its
+   *          current `pins`, `targetYear` and `strategy`. Lets the user say "what if we also
+   *          capped plastics?" and have "also" resolve against what they are looking at.
+   *        - `history` (array) — prior turns as `{role, content}` objects, oldest first, so
+   *          follow-up questions resolve pronouns. Trimmed internally to a recent window.
+   */
+  ask: function(spec: json): json js
+
+  /**
+   * Execute a write that {@link BadgerCopilot#ask} deliberately refused to perform unattended.
+   *
+   * Takes the `pendingAction` envelope verbatim and dispatches it to
+   * {@link InterceptAgent#decide} or {@link PlannerAgent#savePlan}. The action is re-validated
+   * here rather than trusted: an unrecognised tool name or a missing required argument is rejected
+   * rather than guessed at, so a malformed suggestion cannot become a database write.
+   *
+   * Returns `{ok, result, summary, error}`, where `result` is the agent method's own return value
+   * — the realised avoided tonnes for a decision, or the stored plan for a save — so the UI
+   * reports what actually happened rather than what was proposed.
+   *
+   * @param action
+   *        A `pendingAction` object as returned by {@link BadgerCopilot#ask}, carrying the tool
+   *        `name` and its `args`.
+   */
+  confirmAction: function(action: json): json js
+
+  /**
+   * The agent's declared capabilities — the tool manifest, as handed to the model.
+   *
+   * Returned for the methodology page, where showing the exact list of callable methods, their
+   * arguments and which ones are write-gated is the clearest available evidence that the copilot
+   * is orchestrating audited code paths rather than improvising answers. Also used internally to
+   * build each request, so the documented manifest and the live one cannot diverge.
+   */
+  toolManifest: function(): json js
+}

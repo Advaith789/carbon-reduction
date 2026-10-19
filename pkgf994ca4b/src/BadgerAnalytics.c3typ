@@ -1,0 +1,124 @@
+/**
+ * Agent 1 — the insight engine over campus purchase emissions.
+ *
+ * Every method here answers the question "where is our Scope 3 purchasing carbon, and who
+ * owns it?" by joining {@link SpendTransaction} spend to the EPA factor on its
+ * {@link ProductCategory} and rolling the result up along whichever axis the caller asks for.
+ * Carbon for a single record is always
+ * `amount * productCategory.emissionFactor.kgCo2ePerDollar / 1000` tonnes CO2e — the
+ * spend-based method for GHG Protocol Scope 3 Category 1.
+ *
+ * The two groups the app is built to make talk to each other — **buildings** and
+ * **departments** — are both first-class rollup dimensions, so the same number can be handed
+ * to a facilities manager and to a department chair in the terms each of them controls.
+ *
+ * **Units contract for the whole type:** tonnes CO2e as doubles rounded to 1 decimal,
+ * US dollars rounded to whole units, and **percentages as 0–100 doubles** (never 0–1
+ * fractions, even though {@link SustainabilityGoal#reductionPct} and
+ * {@link ReductionLever#maxReductionPct} are stored as fractions). Every method is read-only.
+ */
+type BadgerAnalytics {
+
+  /**
+   * Headline numbers for one fiscal year — the campus overview card.
+   *
+   * Returns total tonnes and spend, carbon intensity in kg CO2e per dollar, record and unit
+   * counts, the prior-year comparison, the top emitting categories with their concentration
+   * share, progress against every {@link SustainabilityGoal}, and the fiscal-year-end spend
+   * spike (UW's fiscal year ends June 30, and the May/June "use it or lose it" rush is a
+   * genuine, addressable source of over-ordering).
+   *
+   * @param fiscalYear
+   *        Fiscal year to summarise. Defaults to 2024, the planner's baseline year, when null.
+   */
+  campusSummary: function(fiscalYear: int): json js
+
+  /**
+   * Emissions ranked along one rollup dimension, for the bar charts and league tables.
+   *
+   * Each row carries tonnes, spend, carbon intensity and share of campus total, so a reader
+   * can immediately see the difference between *spending a lot* and *emitting a lot* — the
+   * distinction that makes this more than a spend report.
+   *
+   * @param dimension
+   *        One of `"category"`, `"department"`, `"building"`, `"college"` or `"vendor"`.
+   *        Defaults to `"category"` when null.
+   * @param fiscalYear
+   *        Fiscal year to roll up. Defaults to 2024 when null.
+   */
+  emissionsBy: function(dimension: string, fiscalYear: int): json js
+
+  /**
+   * Multi-year emissions and spend history for the trend chart.
+   *
+   * Returns one point per fiscal year across the whole available range. When `dimension` is
+   * supplied, it additionally returns a series per member of that dimension, limited to the
+   * `topN` largest emitters so the chart stays legible, with everything else folded into an
+   * `"Other"` series.
+   *
+   * @param dimension
+   *        Optional split: `"category"`, `"department"`, `"building"` or `"college"`. Pass
+   *        null for the campus total only.
+   * @param topN
+   *        How many series to break out when `dimension` is set. Defaults to 5.
+   */
+  emissionsTrend: function(dimension: string, topN: int): json js
+
+  /**
+   * The department-by-category cells where carbon is unusually concentrated — Agent 1's
+   * "look here first" list.
+   *
+   * Ranks every department/category pair by tonnes and annotates each with why it stands out:
+   * its share of the department's own footprint and of all campus carbon in that category, and
+   * whether a {@link ReductionLever} exists for it — preferring to name one the department
+   * could start on Monday ({@link ReductionLever#horizonYear} 2030) over a 2040 capital
+   * programme. This is what turns a dashboard into a work queue.
+   *
+   * The sharpest annotation is `carbonVsSpendLeverage`: the cell's share of the department's
+   * **carbon** divided by its share of the department's **spend**. A ratio of 4 means a dollar
+   * redirected here is worth four dollars redirected anywhere else that department buys, which
+   * is the one number that reorders a procurement to-do list. Note that comparing a cell's
+   * intensity against its *category* average would be useless — the EPA factor is per category,
+   * so every cell in a category has identical intensity by construction; the department's own
+   * blended intensity ({@link BadgerAnalytics#hotspots} `departmentAvgKgPerDollar`) is the
+   * yardstick that actually varies.
+   *
+   * @param fiscalYear
+   *        Fiscal year to analyse. Defaults to 2024 when null.
+   * @param limit
+   *        Maximum number of hotspot cells to return. Defaults to 10.
+   */
+  hotspots: function(fiscalYear: int, limit: int): json js
+
+  /**
+   * Everything the campus carbon map draws: per-building emissions with
+   * geo-coordinates, **and** the building × category matrix underneath them.
+   *
+   * `buildings` entries carry the building's {@link Building#latitude} /
+   * {@link Building#longitude}, its tonnes and spend, its basket intensity in
+   * kg CO2e per dollar, how many departments order from that address
+   * independently, and the category dominating its mix — by name as well as id,
+   * with that category's share of the building's own footprint.
+   *
+   * `matrix` is one cell per populated building/category pair, each with two
+   * shares that answer two different questions. `buildingSharePct` is *what kind*
+   * of carbon this building buys, which decides whether a given
+   * {@link ReductionLever} applies to it at all. `categorySharePct` is how much
+   * of a single lever's campus-wide reach sits at this one address, which decides
+   * whether going there is worth the trip. `categories` gives the column axis,
+   * ordered by campus carbon descending.
+   *
+   * The matrix is returned rather than left to the caller because deriving it
+   * from the raw ledger means applying the spend-based emission factor a second
+   * time; two implementations of the same arithmetic is one edit away from a
+   * heatmap that disagrees with the totals printed beside it.
+   *
+   * Interpretation note, which the UI should surface: embodied purchase emissions are
+   * physically released at suppliers, not on campus. The map shows **where the buying
+   * decision is made**, which is exactly where it can be changed.
+   *
+   * @param fiscalYear
+   *        Fiscal year to map. Defaults to 2024 when null.
+   */
+  buildingMap: function(fiscalYear: int): json js
+}

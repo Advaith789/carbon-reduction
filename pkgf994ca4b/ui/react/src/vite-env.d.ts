@@ -12,4 +12,4 @@ declare module 'pages';
 declare module 'components';
 declare module 'stylesheets'
 
-// / <reference types="vite/client" />
+/// <reference types="vite/client" />

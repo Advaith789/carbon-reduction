@@ -201,3 +201,4 @@ results/
 .playwright
 .attachments
 .github/copilot-instructions.md
+.env

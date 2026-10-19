@@ -1,0 +1,47 @@
+/**
+ * A campus emissions-reduction milestone the planner aims at.
+ *
+ * Badger Footprint models UW-Madison's published commitments as interim milestones on a
+ * glide path: a 2030 target and a 2040 target on the way to net-zero in 2048. Each goal is
+ * expressed as a {@link SustainabilityGoal#reductionPct} cut relative to a
+ * {@link SustainabilityGoal#baselineYear}, so the absolute tonnage target is always derived
+ * from measured baseline emissions rather than hard-coded.
+ */
+entity type SustainabilityGoal schema name "SUSTAINABILITY_GOAL" {
+
+  /**
+   * Unique identifier for the goal, e.g. `"goal_2030"`.
+   */
+  id: !string
+
+  /**
+   * Display name of the milestone (e.g. `"2030 interim target"`).
+   */
+  name: !string
+
+  /**
+   * The year by which the reduction must be achieved.
+   */
+  targetYear: !int
+
+  /**
+   * The year the reduction is measured against.
+   */
+  baselineYear: !int
+
+  /**
+   * Required reduction as a fraction in `[0, 1]` of baseline emissions (e.g. `0.5` for a
+   * 50% cut). The absolute target is `baselineEmissions * (1 - reductionPct)`.
+   */
+  reductionPct: !double
+
+  /**
+   * Which GHG Protocol scopes the goal covers (e.g. `"Scope 3 - purchased goods & services"`).
+   */
+  scope: string
+
+  /**
+   * Prose describing the commitment and its provenance.
+   */
+  description: string
+}

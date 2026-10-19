@@ -1,0 +1,35 @@
+/**
+ * A per-department carbon and dollar budget for a given fiscal year.
+ *
+ * Badger Footprint treats carbon like money: each {@link Department} gets a
+ * {@link CarbonBudget#targetTonnesCo2e} target alongside its {@link CarbonBudget#dollarBudget},
+ * and progress is tracked weekly against the target on the path to UW's 2048 net-zero goal.
+ */
+entity type CarbonBudget schema name "CARBON_BUDGET" {
+
+  /**
+   * Unique identifier for the budget entry, e.g. `"chemistry_FY2024"`.
+   */
+  id: !string
+
+  /**
+   * The {@link Department} this budget applies to. Inverse of
+   * {@link Department#carbonBudgets}.
+   */
+  department: !Department
+
+  /**
+   * Fiscal year the budget covers (e.g. `2024`).
+   */
+  fiscalYear: !int
+
+  /**
+   * Target embodied-carbon ceiling for the year, in tonnes CO2e.
+   */
+  targetTonnesCo2e: double
+
+  /**
+   * Dollar budget for the year, in USD, shown alongside the carbon target.
+   */
+  dollarBudget: double
+}

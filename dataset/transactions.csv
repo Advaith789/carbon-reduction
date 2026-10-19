@@ -1,0 +1,34 @@
+id,department_id,vendor_id,category,fiscal_year,amount_usd,quantity
+t001,chem,v_fisher,Lab Equipment,2024,420000,
+t002,chem,v_sigma,Lab Chemicals,2024,680000,
+t003,chem,v_vwr,Lab Chemicals,2024,310000,
+t004,chem,v_cdw,IT Equipment,2024,95000,48
+t005,chem,v_dellmon,IT Equipment,2024,22000,70
+t006,engr,v_cdw,IT Equipment,2024,260000,150
+t007,engr,v_dell,IT Equipment,2024,180000,90
+t008,engr,v_grainger,Furniture/Equip,2024,140000,
+t009,engr,v_zeiss,Lab Equipment,2024,220000,
+t010,cs,v_apple,IT Equipment,2024,320000,180
+t011,cs,v_cdw,IT Equipment,2024,240000,160
+t012,cs,v_dellmon,IT Equipment,2024,60000,120
+t013,biochem,v_thermo,Lab Equipment,2024,980000,
+t014,biochem,v_sigma,Lab Chemicals,2024,720000,
+t015,biochem,v_cdw,IT Equipment,2024,70000,40
+t016,wid,v_cdw,IT Equipment,2024,150000,85
+t017,wid,v_fisher,Lab Equipment,2024,540000,
+t018,wid,v_steelcase,Furniture/Equip,2024,90000,
+t019,bus,v_apple,IT Equipment,2024,220000,120
+t020,bus,v_cdw,IT Equipment,2024,120000,80
+t021,bus,v_steelcase,Furniture/Equip,2024,110000,
+t022,smph,v_thermo,Lab Equipment,2024,1900000,
+t023,smph,v_fisher,Lab Equipment,2024,1200000,
+t024,smph,v_sigma,Lab Chemicals,2024,1400000,
+t025,smph,v_cdw,IT Equipment,2024,520000,300
+t026,smph,v_dell,IT Equipment,2024,310000,150
+t027,phys,v_cdw,IT Equipment,2024,95000,50
+t028,phys,v_zeiss,Lab Equipment,2024,260000,
+t029,phys,v_grainger,Furniture/Equip,2024,180000,
+t030,nelson,v_apple,IT Equipment,2024,70000,40
+t031,nelson,v_cdw,IT Equipment,2024,35000,25
+t032,cs,v_cdw,IT Equipment,2022,180000,170
+t033,cs,v_cdw,IT Equipment,2023,210000,150

@@ -1,0 +1,46 @@
+/**
+ * A manufacturer-specific, per-product carbon footprint — a more accurate alternative to the
+ * spend-based {@link EmissionFactor} estimate where real product data exists (mostly
+ * electronics).
+ *
+ * Example: a Dell business laptop at ~121 kg CO2e over a 4-year life, ~68% from manufacturing
+ * (source: Dell PCF via Climatiq). These anchor the laptop-refresh style recommendations.
+ */
+entity type ProductFootprint schema name "PRODUCT_FOOTPRINT" {
+
+  /**
+   * Unique identifier for the product footprint entry.
+   */
+  id: !string
+
+  /**
+   * Product name (e.g. `"Dell Latitude 3450"`).
+   */
+  productName: !string
+
+  /**
+   * Manufacturer name (e.g. `"Dell Technologies"`).
+   */
+  manufacturer: string
+
+  /**
+   * Total life-cycle footprint for one unit, in kg CO2e.
+   */
+  kgCo2e: !double
+
+  /**
+   * Assumed useful life of the product, in years, used to annualize the footprint.
+   */
+  lifespanYears: double
+
+  /**
+   * Fraction (0–1) of the total footprint attributable to manufacturing — the portion a
+   * refurbished unit is assumed to avoid.
+   */
+  pctManufacturing: double
+
+  /**
+   * Citation for the footprint figure (e.g. `"Dell PCF via Climatiq"`).
+   */
+  source: string
+}

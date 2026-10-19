@@ -1,0 +1,301 @@
+[
+  {
+    "id": "pr_0001",
+    "productName": "Pipette tips, 1000uL (case)",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "department": {
+      "id": "bacteriology"
+    },
+    "building": {
+      "id": "microbial_sciences"
+    },
+    "vendor": {
+      "id": "fisher_scientific"
+    },
+    "quantity": 30,
+    "unitPrice": 310,
+    "amount": 9300,
+    "requestedBy": "M. Alvarez",
+    "requestDate": "2024-06-18T00:00:00Z",
+    "status": "Pending",
+    "justification": "Routine restock for summer sequencing runs."
+  },
+  {
+    "id": "pr_0002",
+    "productName": "Dell 24in monitor",
+    "productCategory": {
+      "id": "it_hardware"
+    },
+    "department": {
+      "id": "mechanical_engineering"
+    },
+    "building": {
+      "id": "engineering_hall"
+    },
+    "vendor": {
+      "id": "cdw"
+    },
+    "quantity": 5,
+    "unitPrice": 230,
+    "amount": 1150,
+    "requestedBy": "J. Chen",
+    "requestDate": "2024-06-19T00:00:00Z",
+    "status": "Pending",
+    "justification": "Two new grad workstations in the dynamics lab."
+  },
+  {
+    "id": "pr_0003",
+    "productName": "Nitrile exam gloves (case)",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "department": {
+      "id": "bacteriology"
+    },
+    "building": {
+      "id": "microbial_sciences"
+    },
+    "vendor": {
+      "id": "vwr"
+    },
+    "quantity": 18,
+    "unitPrice": 95,
+    "amount": 1710,
+    "requestedBy": "P. Okonjo",
+    "requestDate": "2024-06-20T00:00:00Z",
+    "status": "Pending",
+    "justification": "PPE restock ahead of fiscal year end."
+  },
+  {
+    "id": "pr_0004",
+    "productName": "Steelcase task chair",
+    "productCategory": {
+      "id": "furniture"
+    },
+    "department": {
+      "id": "computer_sciences"
+    },
+    "building": {
+      "id": "computer_sciences"
+    },
+    "vendor": {
+      "id": "steelcase"
+    },
+    "quantity": 10,
+    "unitPrice": 890,
+    "amount": 8900,
+    "requestedBy": "R. Patel",
+    "requestDate": "2024-06-20T00:00:00Z",
+    "status": "Pending",
+    "justification": "Furnishing the new TA office suite."
+  },
+  {
+    "id": "pr_0005",
+    "productName": "Centrifuge tubes, 50mL (case)",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "department": {
+      "id": "biochemistry"
+    },
+    "building": {
+      "id": "biochemistry"
+    },
+    "vendor": {
+      "id": "uline"
+    },
+    "quantity": 20,
+    "unitPrice": 180,
+    "amount": 3600,
+    "requestedBy": "S. Nakamura",
+    "requestDate": "2024-06-21T00:00:00Z",
+    "status": "Pending",
+    "justification": "Consumables for the protein prep core."
+  },
+  {
+    "id": "pr_0006",
+    "productName": "Dell Latitude 3450",
+    "productCategory": {
+      "id": "it_hardware"
+    },
+    "department": {
+      "id": "business"
+    },
+    "building": {
+      "id": "grainger_hall"
+    },
+    "vendor": {
+      "id": "dell"
+    },
+    "quantity": 24,
+    "unitPrice": 1200,
+    "amount": 28800,
+    "requestedBy": "L. Fitzgerald",
+    "requestDate": "2024-06-21T00:00:00Z",
+    "status": "Pending",
+    "justification": "Scheduled 4-year laptop refresh for advising staff."
+  },
+  {
+    "id": "pr_0007",
+    "productName": "Argon cylinder (size 200)",
+    "productCategory": {
+      "id": "industrial_gas"
+    },
+    "department": {
+      "id": "chemistry"
+    },
+    "building": {
+      "id": "chemistry_building"
+    },
+    "vendor": {
+      "id": "airgas"
+    },
+    "quantity": 6,
+    "unitPrice": 165,
+    "amount": 990,
+    "requestedBy": "T. Brennan",
+    "requestDate": "2024-06-24T00:00:00Z",
+    "status": "Pending",
+    "justification": "GC carrier gas for the analytical teaching lab."
+  },
+  {
+    "id": "pr_0008",
+    "productName": "Copy paper (case)",
+    "productCategory": {
+      "id": "paper"
+    },
+    "department": {
+      "id": "mathematics"
+    },
+    "building": {
+      "id": "van_vleck"
+    },
+    "vendor": {
+      "id": "staples"
+    },
+    "quantity": 15,
+    "unitPrice": 42,
+    "amount": 630,
+    "requestedBy": "D. Whitfield",
+    "requestDate": "2024-06-24T00:00:00Z",
+    "status": "Pending",
+    "justification": "Exam printing for summer term."
+  },
+  {
+    "id": "pr_0009",
+    "productName": "96-well plates (case)",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "department": {
+      "id": "med_microbiology"
+    },
+    "building": {
+      "id": "medical_sciences"
+    },
+    "vendor": {
+      "id": "uline"
+    },
+    "quantity": 12,
+    "unitPrice": 215,
+    "amount": 2580,
+    "requestedBy": "A. Rivera",
+    "requestDate": "2024-06-25T00:00:00Z",
+    "status": "Pending",
+    "justification": "Assay plates for the immunology screen."
+  },
+  {
+    "id": "pr_0010",
+    "productName": "USB-C docking station",
+    "productCategory": {
+      "id": "it_hardware"
+    },
+    "department": {
+      "id": "electrical_engineering"
+    },
+    "building": {
+      "id": "engineering_hall"
+    },
+    "vendor": {
+      "id": "cdw"
+    },
+    "quantity": 8,
+    "unitPrice": 180,
+    "amount": 1440,
+    "requestedBy": "K. Sorensen",
+    "requestDate": "2024-06-25T00:00:00Z",
+    "status": "Pending",
+    "justification": "Docks for the new senior design bays."
+  },
+  {
+    "id": "pr_0011",
+    "productName": "Acetonitrile, HPLC grade (4L case)",
+    "productCategory": {
+      "id": "lab_supplies"
+    },
+    "department": {
+      "id": "chemistry"
+    },
+    "building": {
+      "id": "chemistry_building"
+    },
+    "vendor": {
+      "id": "fisher_scientific"
+    },
+    "quantity": 12,
+    "unitPrice": 285,
+    "amount": 3420,
+    "requestedBy": "T. Brennan",
+    "requestDate": "2024-06-26T00:00:00Z",
+    "status": "Pending",
+    "justification": "Mobile phase for ongoing LC-MS runs; consumed on use."
+  },
+  {
+    "id": "pr_0012",
+    "productName": "Benchtop centrifuge, refrigerated",
+    "productCategory": {
+      "id": "lab_instruments"
+    },
+    "department": {
+      "id": "school_of_medicine"
+    },
+    "building": {
+      "id": "medical_sciences"
+    },
+    "vendor": {
+      "id": "thermo_fisher"
+    },
+    "quantity": 1,
+    "unitPrice": 14500,
+    "amount": 14500,
+    "requestedBy": "A. Rivera",
+    "requestDate": "2024-06-26T00:00:00Z",
+    "status": "Pending",
+    "justification": "Dedicated unit required for clinical sample integrity."
+  },
+  {
+    "id": "pr_0013",
+    "productName": "Solvent bottles, 4L (case)",
+    "productCategory": {
+      "id": "plastics"
+    },
+    "department": {
+      "id": "chemistry"
+    },
+    "building": {
+      "id": "biochemistry"
+    },
+    "vendor": {
+      "id": "uline"
+    },
+    "quantity": 6,
+    "unitPrice": 210,
+    "amount": 1260,
+    "requestedBy": "T. Brennan",
+    "requestDate": "2024-06-27T00:00:00Z",
+    "status": "Pending",
+    "justification": "Glassware restock for the satellite prep lab."
+  }
+]

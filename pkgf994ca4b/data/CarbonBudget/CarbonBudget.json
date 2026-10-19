@@ -1,0 +1,434 @@
+[
+  {
+    "id": "chemistry_FY2024",
+    "department": {
+      "id": "chemistry"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 150.3,
+    "dollarBudget": 163694.0
+  },
+  {
+    "id": "chemistry_FY2030",
+    "department": {
+      "id": "chemistry"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 120.3,
+    "dollarBudget": 163694.0
+  },
+  {
+    "id": "chemistry_FY2040",
+    "department": {
+      "id": "chemistry"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 82.7,
+    "dollarBudget": 163694.0
+  },
+  {
+    "id": "biochemistry_FY2024",
+    "department": {
+      "id": "biochemistry"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 204.8,
+    "dollarBudget": 424947.0
+  },
+  {
+    "id": "biochemistry_FY2030",
+    "department": {
+      "id": "biochemistry"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 163.9,
+    "dollarBudget": 424947.0
+  },
+  {
+    "id": "biochemistry_FY2040",
+    "department": {
+      "id": "biochemistry"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 112.6,
+    "dollarBudget": 424947.0
+  },
+  {
+    "id": "genetics_FY2024",
+    "department": {
+      "id": "genetics"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 56.6,
+    "dollarBudget": 178523.0
+  },
+  {
+    "id": "genetics_FY2030",
+    "department": {
+      "id": "genetics"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 45.2,
+    "dollarBudget": 178523.0
+  },
+  {
+    "id": "genetics_FY2040",
+    "department": {
+      "id": "genetics"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 31.1,
+    "dollarBudget": 178523.0
+  },
+  {
+    "id": "bacteriology_FY2024",
+    "department": {
+      "id": "bacteriology"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 139.3,
+    "dollarBudget": 199965.0
+  },
+  {
+    "id": "bacteriology_FY2030",
+    "department": {
+      "id": "bacteriology"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 111.4,
+    "dollarBudget": 199965.0
+  },
+  {
+    "id": "bacteriology_FY2040",
+    "department": {
+      "id": "bacteriology"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 76.6,
+    "dollarBudget": 199965.0
+  },
+  {
+    "id": "food_science_FY2024",
+    "department": {
+      "id": "food_science"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 98.9,
+    "dollarBudget": 102039.0
+  },
+  {
+    "id": "food_science_FY2030",
+    "department": {
+      "id": "food_science"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 79.1,
+    "dollarBudget": 102039.0
+  },
+  {
+    "id": "food_science_FY2040",
+    "department": {
+      "id": "food_science"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 54.4,
+    "dollarBudget": 102039.0
+  },
+  {
+    "id": "mechanical_engineering_FY2024",
+    "department": {
+      "id": "mechanical_engineering"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 16.3,
+    "dollarBudget": 47951.0
+  },
+  {
+    "id": "mechanical_engineering_FY2030",
+    "department": {
+      "id": "mechanical_engineering"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 13.0,
+    "dollarBudget": 47951.0
+  },
+  {
+    "id": "mechanical_engineering_FY2040",
+    "department": {
+      "id": "mechanical_engineering"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 9.0,
+    "dollarBudget": 47951.0
+  },
+  {
+    "id": "electrical_engineering_FY2024",
+    "department": {
+      "id": "electrical_engineering"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 26.6,
+    "dollarBudget": 135554.0
+  },
+  {
+    "id": "electrical_engineering_FY2030",
+    "department": {
+      "id": "electrical_engineering"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 21.3,
+    "dollarBudget": 135554.0
+  },
+  {
+    "id": "electrical_engineering_FY2040",
+    "department": {
+      "id": "electrical_engineering"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 14.6,
+    "dollarBudget": 135554.0
+  },
+  {
+    "id": "chem_bio_engineering_FY2024",
+    "department": {
+      "id": "chem_bio_engineering"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 140.7,
+    "dollarBudget": 141916.0
+  },
+  {
+    "id": "chem_bio_engineering_FY2030",
+    "department": {
+      "id": "chem_bio_engineering"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 112.6,
+    "dollarBudget": 141916.0
+  },
+  {
+    "id": "chem_bio_engineering_FY2040",
+    "department": {
+      "id": "chem_bio_engineering"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 77.4,
+    "dollarBudget": 141916.0
+  },
+  {
+    "id": "computer_sciences_FY2024",
+    "department": {
+      "id": "computer_sciences"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 40.2,
+    "dollarBudget": 208649.0
+  },
+  {
+    "id": "computer_sciences_FY2030",
+    "department": {
+      "id": "computer_sciences"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 32.1,
+    "dollarBudget": 208649.0
+  },
+  {
+    "id": "computer_sciences_FY2040",
+    "department": {
+      "id": "computer_sciences"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 22.1,
+    "dollarBudget": 208649.0
+  },
+  {
+    "id": "physics_FY2024",
+    "department": {
+      "id": "physics"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 149.0,
+    "dollarBudget": 554509.0
+  },
+  {
+    "id": "physics_FY2030",
+    "department": {
+      "id": "physics"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 119.2,
+    "dollarBudget": 554509.0
+  },
+  {
+    "id": "physics_FY2040",
+    "department": {
+      "id": "physics"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 81.9,
+    "dollarBudget": 554509.0
+  },
+  {
+    "id": "astronomy_FY2024",
+    "department": {
+      "id": "astronomy"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 21.2,
+    "dollarBudget": 176955.0
+  },
+  {
+    "id": "astronomy_FY2030",
+    "department": {
+      "id": "astronomy"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 16.9,
+    "dollarBudget": 176955.0
+  },
+  {
+    "id": "astronomy_FY2040",
+    "department": {
+      "id": "astronomy"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 11.6,
+    "dollarBudget": 176955.0
+  },
+  {
+    "id": "mathematics_FY2024",
+    "department": {
+      "id": "mathematics"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 64.1,
+    "dollarBudget": 557757.0
+  },
+  {
+    "id": "mathematics_FY2030",
+    "department": {
+      "id": "mathematics"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 51.3,
+    "dollarBudget": 557757.0
+  },
+  {
+    "id": "mathematics_FY2040",
+    "department": {
+      "id": "mathematics"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 35.2,
+    "dollarBudget": 557757.0
+  },
+  {
+    "id": "school_of_medicine_FY2024",
+    "department": {
+      "id": "school_of_medicine"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 93.4,
+    "dollarBudget": 411145.0
+  },
+  {
+    "id": "school_of_medicine_FY2030",
+    "department": {
+      "id": "school_of_medicine"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 74.7,
+    "dollarBudget": 411145.0
+  },
+  {
+    "id": "school_of_medicine_FY2040",
+    "department": {
+      "id": "school_of_medicine"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 51.4,
+    "dollarBudget": 411145.0
+  },
+  {
+    "id": "med_microbiology_FY2024",
+    "department": {
+      "id": "med_microbiology"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 86.5,
+    "dollarBudget": 152464.0
+  },
+  {
+    "id": "med_microbiology_FY2030",
+    "department": {
+      "id": "med_microbiology"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 69.2,
+    "dollarBudget": 152464.0
+  },
+  {
+    "id": "med_microbiology_FY2040",
+    "department": {
+      "id": "med_microbiology"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 47.6,
+    "dollarBudget": 152464.0
+  },
+  {
+    "id": "business_FY2024",
+    "department": {
+      "id": "business"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 34.5,
+    "dollarBudget": 417775.0
+  },
+  {
+    "id": "business_FY2030",
+    "department": {
+      "id": "business"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 27.6,
+    "dollarBudget": 417775.0
+  },
+  {
+    "id": "business_FY2040",
+    "department": {
+      "id": "business"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 19.0,
+    "dollarBudget": 417775.0
+  },
+  {
+    "id": "biomedical_engineering_FY2024",
+    "department": {
+      "id": "biomedical_engineering"
+    },
+    "fiscalYear": 2024,
+    "targetTonnesCo2e": 91.8,
+    "dollarBudget": 298531.0
+  },
+  {
+    "id": "biomedical_engineering_FY2030",
+    "department": {
+      "id": "biomedical_engineering"
+    },
+    "fiscalYear": 2030,
+    "targetTonnesCo2e": 73.5,
+    "dollarBudget": 298531.0
+  },
+  {
+    "id": "biomedical_engineering_FY2040",
+    "department": {
+      "id": "biomedical_engineering"
+    },
+    "fiscalYear": 2040,
+    "targetTonnesCo2e": 50.5,
+    "dollarBudget": 298531.0
+  }
+]

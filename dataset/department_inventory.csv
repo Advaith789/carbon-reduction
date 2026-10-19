@@ -1,0 +1,17 @@
+id,department_id,asset_type,count,avg_age_years,refresh_cycle_years,surplus_eligible_count
+i01,chem,Laptop,260,3.1,4,40
+i02,chem,Monitor,310,4.2,6,55
+i03,chem,Lab Instrument,120,6.4,10,18
+i04,engr,Laptop,980,2.8,4,150
+i05,engr,Monitor,1100,3.9,6,180
+i06,cs,Laptop,840,2.6,4,160
+i07,cs,Monitor,900,3.5,6,140
+i08,biochem,Laptop,240,3.4,4,38
+i09,biochem,Lab Instrument,210,7.1,10,30
+i10,wid,Laptop,300,3.0,4,50
+i11,bus,Laptop,520,2.9,4,85
+i12,smph,Laptop,1600,3.2,4,260
+i13,smph,Lab Instrument,540,6.8,10,80
+i14,phys,Laptop,210,3.6,4,34
+i15,phys,Lab Instrument,95,8.0,10,16
+i16,nelson,Laptop,140,3.3,4,22

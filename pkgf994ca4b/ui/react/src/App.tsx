@@ -9,10 +9,17 @@
 
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Dashboard from './pages/Dashboard/Dashboard';
 import SideNav from './components/SideNav/SideNav';
 import TopNav from './components/TopNav/TopNav';
 import ErrorReporterProvider from './components/ErrorBoundary/ErrorBoundary';
+import { BadgerDataProvider } from './contexts/BadgerDataProvider';
+import { BuckyProvider } from './contexts/BuckyProvider';
+import BuckyDock from './components/badger/BuckyDock';
+import Overview from './pages/Overview/Overview';
+import CampusMap from './pages/CampusMap/CampusMap';
+import Intercept from './pages/Intercept/Intercept';
+import Planner from './pages/Planner/Planner';
+import Methodology from './pages/Methodology/Methodology';
 
 /**
  * Application shell.
@@ -23,38 +30,52 @@ import ErrorReporterProvider from './components/ErrorBoundary/ErrorBoundary';
  * of the shell and cannot be dropped by an individual page. Per the C3 Design
  * System, the TopNavBar is expected on every screen — keep it mounted here and
  * do not move it inside a route.
+ *
+ * {@link BadgerDataProvider} wraps the router rather than any single page: the
+ * dataset is fetched once and shared, so moving between the measurement, map,
+ * intercept and planner views costs no further round trips and every page shows
+ * numbers that provably came from the same query.
+ *
+ * {@link BuckyProvider} wraps it for the same reason, applied to conversation rather
+ * than data: there is exactly one transcript and it lives above `<Routes>`, so asking a
+ * question on the map and then walking over to the intercept to act on the answer does
+ * not silently discard the thread. {@link BuckyDock} — the floating launcher and popup —
+ * is mounted here beside the chrome rather than inside a page, because a chat you have to
+ * navigate to find is a panel, not an assistant.
  */
 export default function App() {
   return (
     <ErrorReporterProvider>
-      <div className="h-screen flex flex-col max-w-full overflow-hidden">
-        <TopNav title="Application Name" />
-        <div className="flex flex-1 min-h-0">
-          <SideNav />
-          <div className="flex-1 flex flex-col min-w-0">
-            <main className="flex-1 overflow-auto bg-[var(--c3-style-basic-bg-page)]">
-              <Routes>
-                {/* Add page routes here */}
-                <Route path="/" element={<Dashboard />} />
-                <Route
-                  path="*"
-                  element={
-                    import.meta.env.MODE === 'development' ? (
-                      <div className="flex h-full items-center justify-center p-8 text-center text-[var(--c3-style-basic-fg-neutral)]">
-                        <p>No route matched. Add routes in App.tsx.</p>
-                      </div>
-                    ) : (
-                      <div className="flex h-full items-center justify-center p-8 text-center text-[var(--c3-style-basic-fg-neutral)]">
-                        <p>Page not found.</p>
-                      </div>
-                    )
-                  }
-                />
-              </Routes>
-            </main>
+      <BadgerDataProvider>
+        <BuckyProvider>
+          <div className="h-screen flex flex-col max-w-full overflow-hidden">
+            <TopNav title="Badger Footprint" />
+            <div className="flex flex-1 min-h-0">
+              <SideNav />
+              <div className="flex-1 flex flex-col min-w-0">
+                <main className="flex-1 overflow-auto bg-[var(--c3-style-basic-bg-page)]">
+                  <Routes>
+                    <Route path="/" element={<Overview />} />
+                    <Route path="/map" element={<CampusMap />} />
+                    <Route path="/intercept" element={<Intercept />} />
+                    <Route path="/planner" element={<Planner />} />
+                    <Route path="/methodology" element={<Methodology />} />
+                    <Route
+                      path="*"
+                      element={
+                        <div className="flex h-full items-center justify-center p-8 text-center text-[var(--c3-style-basic-fg-neutral)]">
+                          <p>Page not found.</p>
+                        </div>
+                      }
+                    />
+                  </Routes>
+                </main>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+          <BuckyDock />
+        </BuckyProvider>
+      </BadgerDataProvider>
     </ErrorReporterProvider>
   );
 }

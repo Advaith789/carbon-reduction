@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+  `class="dark"` is set here, before any JavaScript runs, so the first paint is
+  already dark. useTheme only ever removes it when a user has explicitly stored a
+  light preference — without this the app flashes white for one frame on load.
+-->
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/c3Logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Package</title>
+    <title>Badger Footprint</title>
   </head>
   <body>
     <div id="root" class="page-content"></div>

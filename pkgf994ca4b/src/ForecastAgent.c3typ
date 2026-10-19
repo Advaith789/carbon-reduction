@@ -1,0 +1,113 @@
+/**
+ * Agent 4 — the only part of this application that extrapolates.
+ *
+ * Every other agent reports arithmetic over records that exist. {@link BadgerAnalytics} rolls up
+ * {@link SpendTransaction} rows, {@link InterceptAgent} scores a {@link PurchaseRequest} that was
+ * actually submitted, and {@link PlannerAgent} solves a deterministic allocation under stated
+ * ceilings. This type is different in kind: it fits a model to history and then states values for
+ * months that have no transactions in them at all.
+ *
+ * **The model.** For one {@link Building}, monthly purchase emissions are regressed by ordinary
+ * least squares on a linear time index plus eleven monthly indicator variables:
+ *
+ *     tonnes(t) = b0 + b1*t + sum over m in {Feb..Dec} of bm * 1[month(t) = m] + e(t)
+ *
+ * January is the omitted reference level, so each `bm` reads directly as "this month runs N
+ * tonnes above or below January at the same point in the trend". Thirteen parameters are fit
+ * against roughly 84 monthly observations (FY2019–FY2025), which is a comfortable ratio; buildings
+ * with too little history are reported as unfittable rather than fit badly and reported anyway.
+ * The normal equations are solved by Gauss-Jordan elimination with partial pivoting, and a
+ * singular design matrix — which happens when a building never bought anything in some calendar
+ * month — falls back to a trend-only fit rather than returning nonsense.
+ *
+ * Seasonality is not a decoration here. UW's fiscal year ends 30 June, and the May/June
+ * "use it or lose it" rush is a real, repeating, addressable feature of campus purchasing
+ * (see {@link BadgerAnalytics#campusSummary} `fiscalYearEndSpike`). A trend-only fit would smear
+ * that spike across the year and lose the one seasonal fact that a procurement office can act on.
+ *
+ * **Where the measured/projected boundary sits.** It is not "today" — it is the last fiscal year
+ * with transactions in it. Everything the other three agents return is measured on that side of
+ * the line. Everything this type returns is on the far side, and every method therefore ships a
+ * `method` string naming the estimator and a `disclaimer` that says so in words. The Method page
+ * prints the claim that no model computes any measured number in this application; that claim
+ * stays true precisely because nothing from this type is ever summed into a reported total, and a
+ * caller that renders these values must label them as a projection.
+ *
+ * **Units contract**, identical to the other agents: tonnes CO2e as doubles rounded to 1 decimal,
+ * US dollars as whole units, and percentages as **0–100 doubles**. Every method is read-only.
+ */
+type ForecastAgent {
+
+  /**
+   * Fit the trend-plus-seasonality model for one building and project it forward.
+   *
+   * Carbon per month is `amount * productCategory.emissionFactor.kgCo2ePerDollar / 1000`, summed
+   * over every {@link SpendTransaction} whose {@link Department} sits in this building, bucketed
+   * by the calendar month of {@link SpendTransaction#transactionDate}. Months with no purchases
+   * are included as genuine zeros rather than skipped — a lab that ordered nothing in August is
+   * information about August, and dropping the row would bias the seasonal terms upward.
+   *
+   * The returned `fit` block is what makes the projection auditable instead of decorative:
+   * `rSquared` says how much of the month-to-month variation the model actually explains,
+   * `residualSigma` is the standard error in tonnes that sets the width of the interval, and
+   * `observationCount` lets a reader judge whether thirteen parameters had any business being fit.
+   * A low `rSquared` is reported plainly; it is not grounds for hiding the number, because a
+   * building whose purchasing is genuinely erratic *should* come back with a wide band.
+   *
+   * Interval arithmetic: bounds are the point estimate ± 1.96 * `residualSigma`, a prediction
+   * interval for a single future month rather than a confidence interval on the fitted mean, and
+   * the lower bound is clamped at zero because a building cannot emit negative purchased carbon.
+   *
+   * **What the headline change is measured against, and why it matters.** `outlook.changePct`
+   * compares the projected next twelve months to the *fitted* trailing twelve — both sides come
+   * off the same regression line — so the delta isolates trend plus seasonality. Differencing the
+   * projection against the *actual* trailing twelve instead would make the headline dominated by
+   * mean reversion: with an `rSquared` near 0.2 the fitted line sits close to the long-run mean,
+   * so a building that happened to have a quiet year reads as about to triple, which is not a
+   * claim the model makes. The measured figure is still returned as
+   * `outlook.actualTrailing12MonthsTonnes`, alongside `outlook.modelVsActualPct` — the gap between
+   * fit and reality over the same window, which is the plainest available statement of how much to
+   * trust the projection. `trend.direction` is likewise thresholded at 1% of mean annual tonnes
+   * rather than an absolute tonnage, so it cannot disagree in sign with `changePct`.
+   *
+   * @param buildingId
+   *        Id of the {@link Building} to fit, e.g. `"chemistry_building"`. An id with no matching
+   *        building, or a building whose departments have no transactions, returns
+   *        `fit.fittable = false` with an explanatory `note` and an empty projection rather than
+   *        throwing.
+   * @param horizonMonths
+   *        How many months past the end of the ledger to project. Defaults to 12 when null or
+   *        non-positive, and is capped at 36 — beyond three years a linear trend fit on seven
+   *        years of purchasing data is asserting more than it knows.
+   */
+  buildingForecast: function(buildingId: string, horizonMonths: int): json js
+
+  /**
+   * The same fit for every building at once, reduced to the few figures a hover card can show.
+   *
+   * This exists for one concrete reason: the campus map wants a projection on hover, and hovering
+   * must not cost a network round trip per building. Ten independent fits over the whole ledger is
+   * one query and a few milliseconds of arithmetic, so the UI fetches this once and reads it from
+   * memory as the pointer moves.
+   *
+   * Each entry carries the projected next-twelve-months total, both trailing twelve-month
+   * baselines (fitted and actual — see {@link ForecastAgent#buildingForecast} for why there are
+   * two), the implied direction and percentage change, the annual trend coefficient, the peak
+   * calendar month from the seasonal profile, and the fit quality as `rSquared`,
+   * `residualSigmaTonnes` and `confidenceBandTonnes` — so a reader can see both what the model
+   * says and whether to believe it. Buildings that cannot be fit are still returned, flagged, so
+   * the map never silently drops a marker.
+   *
+   * A caller rendering this on a hover card should lead with the band, not the point estimate.
+   * `rSquared` on the seeded ledger runs roughly 0.12–0.39: the fits recover the fiscal-year-end
+   * spike and the broad level of each building reliably, and individual months far less so. A bare
+   * projected tonnage implies a precision these series do not support, whereas the ±95% band is an
+   * honest width.
+   *
+   * @param horizonMonths
+   *        Projection horizon passed through to {@link ForecastAgent#buildingForecast}. Defaults
+   *        to 12. The `next12MonthsTonnes` summary field always covers twelve months regardless,
+   *        so the headline figure stays comparable between buildings if a caller changes this.
+   */
+  allBuildingForecasts: function(horizonMonths: int): json js
+}

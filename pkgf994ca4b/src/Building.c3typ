@@ -1,0 +1,40 @@
+/**
+ * A UW-Madison campus building that houses one or more {@link Department}s.
+ *
+ * Buildings carry approximate geo-coordinates so the campus carbon map can shade each building
+ * by the purchase-carbon of the departments it houses. Note: embodied purchase emissions are
+ * released at suppliers, not on campus — the map shows *where the buying decision is made*.
+ */
+entity type Building schema name "BUILDING" {
+
+  /**
+   * Unique identifier for the building, e.g. `"chemistry_building"`.
+   */
+  id: !string
+
+  /**
+   * Building name as used in the campus directory (e.g. `"Chemistry Building"`).
+   */
+  name: !string
+
+  /**
+   * Approximate latitude of the building centroid, for map placement.
+   */
+  latitude: double
+
+  /**
+   * Approximate longitude of the building centroid, for map placement.
+   */
+  longitude: double
+
+  /**
+   * Optional prose describing the building.
+   */
+  description: string
+
+  /**
+   * The {@link Department} records housed in this building. Inverse of
+   * {@link Department#building}.
+   */
+  departments: [Department](building)
+}

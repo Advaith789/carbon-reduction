@@ -1,0 +1,80 @@
+/**
+ * The feasibility ceiling and cost of cutting emissions in one {@link ProductCategory} —
+ * the per-category input to the reduction planner's solver.
+ *
+ * {@link ReductionLever#maxReductionPct} is what makes the planner honest: a category cannot
+ * be cut past what the people doing the work say is possible (research depends on lab
+ * chemicals, so its ceiling is low). When pinned categories push the remaining need past the
+ * sum of the other ceilings, the plan is **infeasible** and the planner says so rather than
+ * quietly fudging the numbers.
+ *
+ * A category's ceiling is the **sum** of its levers' {@link ReductionLever#maxReductionPct},
+ * filtered to those available on the plan's horizon — so the same category has a tighter
+ * ceiling in a 2030 plan than in a 2040 one. See {@link ReductionLever#horizonYear}.
+ *
+ * {@link ReductionLever#costPerTonne} orders the levers into a marginal abatement cost curve;
+ * negative values are actions that cut carbon *and* save money, so they rank first.
+ */
+entity type ReductionLever schema name "REDUCTION_LEVER" {
+
+  /**
+   * Unique identifier for the lever.
+   */
+  id: !string
+
+  /**
+   * The {@link ProductCategory} this lever acts on. Inverse of
+   * {@link ProductCategory#reductionLevers}.
+   */
+  productCategory: !ProductCategory
+
+  /**
+   * Short name of the action (e.g. `"Extend IT refresh cycle & buy refurbished"`).
+   */
+  name: !string
+
+  /**
+   * Feasibility ceiling as a fraction in `[0, 1]` — the largest share of this category's
+   * emissions that can realistically be cut by this single action. The planner's sliders are
+   * capped at the category's summed ceiling and the cap is drawn on the track.
+   */
+  maxReductionPct: !double
+
+  /**
+   * Abatement cost in USD per tonne CO2e avoided. **Negative means the action saves money**
+   * (e.g. reuse and refurbished purchasing), which is the adoption hook.
+   */
+  costPerTonne: double
+
+  /**
+   * Implementation difficulty — `Low`, `Medium`, or `High`. Used by the effort-balanced
+   * redistribution strategy.
+   */
+  effortLevel: string
+
+  /**
+   * The role or office accountable for executing this lever.
+   */
+  owner: string
+
+  /**
+   * Planning horizon year on which this lever becomes available. A value of `2030` means a
+   * near-term lever UW can begin immediately (procurement discipline, reuse, sharing, policy),
+   * while `2040` means a structural lever requiring capital investment or supplier-market
+   * change (supplier decarbonisation, capital retrofit, chemistry redesign). A plan targeting
+   * a given year may only draw on levers whose horizonYear is less than or equal to that year,
+   * which is why 2030 ceilings are much lower than 2040 ceilings in the research-heavy
+   * categories.
+   *
+   * This is the mechanism behind the planner's central finding: the 2030 milestone is
+   * reachable by purchasing better, but the 2040 milestone cannot be reached by trimming
+   * harder at all — it requires a different *kind* of action.
+   */
+  horizonYear: int
+
+  /**
+   * Prose describing what the action actually involves and the assumptions behind its
+   * ceiling and cost.
+   */
+  description: string
+}
